@@ -1,0 +1,7 @@
+/// SharedPrefs key constants
+///
+/// contains keys used to store and retrieve secure storage values
+
+abstract class SharedPrefsConstants {
+  static const onBoardingState = 'onboarding_state';
+}
