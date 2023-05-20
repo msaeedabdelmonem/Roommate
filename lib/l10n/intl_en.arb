@@ -6,5 +6,7 @@
   "facebook_login": "Continue with Facebook",
   "google_login": "Continue with Google",
   "appleLogin": "Continue with Apple ID",
-  "search": "search"
+  "search": "search",
+  "rate": "Rate the App",
+  "contact": "Contact The Owner"
 }

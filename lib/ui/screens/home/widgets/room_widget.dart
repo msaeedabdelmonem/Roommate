@@ -8,6 +8,7 @@ import 'package:roommate/main.dart';
 import 'package:roommate/models/home/room_model.dart';
 import 'package:roommate/ui/widgets/custom_text.dart';
 import 'package:roommate/ui/widgets/custom_widgets.dart';
+import 'package:roommate/ui/widgets/room_details.dart';
 
 class RoomWidget extends StatelessWidget {
   const RoomWidget({
@@ -33,67 +34,7 @@ class RoomWidget extends StatelessWidget {
                   image: roomModel.images?.first ?? '',
                 ),
           space(12),
-          RichText(
-            maxLines: 2,
-            text: TextSpan(
-              children: <TextSpan>[
-                TextSpan(
-                  text: roomModel.type,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontSize: AppFontSize.smallMedium,
-                        color: ConstantsColors.blackColor,
-                      ),
-                ),
-                TextSpan(
-                  text: ' in ',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontSize: AppFontSize.smallMedium,
-                        color: ConstantsColors.greyColor,
-                      ),
-                ),
-                TextSpan(
-                  text: roomModel.city,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontSize: AppFontSize.smallMedium,
-                        color: ConstantsColors.blue,
-                      ),
-                )
-              ],
-            ),
-          ),
-          space(6),
-          CustomText(
-            text: roomModel.title ?? '',
-            maxLines: 2,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: ConstantsColors.blackColor,
-                  fontWeight: FontWeight.w500,
-                  fontSize: AppFontSize.x_medium,
-                ),
-          ),
-          space(6),
-          RichText(
-            maxLines: 1,
-            text: TextSpan(
-              children: <TextSpan>[
-                TextSpan(
-                  text: '${roomModel.price} EGP ',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontSize: AppFontSize.x_large,
-                        fontWeight: FontWeight.w700,
-                        color: ConstantsColors.blackColor,
-                      ),
-                ),
-                TextSpan(
-                  text: 'per month',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontSize: AppFontSize.smallMedium,
-                        color: ConstantsColors.greyColor,
-                      ),
-                ),
-              ],
-            ),
-          ),
+          RoomDetailsWidget(roomModel: roomModel)
         ],
       ),
     );
@@ -106,7 +47,11 @@ class RoomImages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-        borderRadius: BorderRadius.circular(16.0.r), child: Image.asset(image));
+    return SizedBox(
+      width: 1.sw,
+      height: 190.h,
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(16.0.r), child: Image.asset(image,fit: BoxFit.fitWidth,)),
+    );
   }
 }

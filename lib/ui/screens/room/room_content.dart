@@ -2,8 +2,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roommate/core/constants/app_font_size.dart';
+import 'package:roommate/core/constants/routes.dart';
+import 'package:roommate/core/navigation/navigation.dart';
 import 'package:roommate/core/theme/colors/config_colors.dart';
+import 'package:roommate/main.dart';
 import 'package:roommate/models/home/room_model.dart';
+import 'package:roommate/models/room_image_model.dart';
 import 'package:roommate/ui/screens/home/widgets/room_widget.dart';
 import 'package:roommate/ui/screens/room/widgets/contact_widget.dart';
 import 'package:roommate/ui/widgets/custom_text.dart';
@@ -22,8 +26,11 @@ class RoomContent extends StatelessWidget {
           child: CarouselSlider(
             items: List.generate(
               roomModel.images!.length,
-              (index) => RoomImages(
-                image: roomModel.images?.first ?? '',
+              (index) => InkWell(
+                onTap: () => _onImageClick(imageIndex: index),
+                child: RoomImages(
+                  image: roomModel.images?[index] ?? '',
+                ),
               ),
             ),
             options: CarouselOptions(
@@ -66,7 +73,8 @@ class RoomContent extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: CustomText(
-            maxLines: 30,textHeight: 24,
+            maxLines: 30,
+            textHeight: 24,
             text: roomModel.desc ?? '',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: ConstantsColors.blackColor,
@@ -77,7 +85,7 @@ class RoomContent extends StatelessWidget {
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 8.h),
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
             child: Align(
               alignment: FractionalOffset.bottomCenter,
               child: ContactWidget(),
@@ -85,6 +93,14 @@ class RoomContent extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+
+  void _onImageClick({required int imageIndex}) {
+    Navigation(navigatorKey: navigatorKey).navigateTo(
+      routeName: RoutesNames.roomImageScreen,
+      arg: RoomImageModel(
+          selectedImage: roomModel.images![imageIndex], roomModel: roomModel),
     );
   }
 }

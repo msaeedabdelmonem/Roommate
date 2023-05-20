@@ -3,6 +3,9 @@ abstract class RoutesNames {
   static const String loginScreen = 'loginScreen';
   static const String homeScreen = 'homeScreen';
   static const String room = 'room';
+  static const String ratingScreen = 'ratingScreen';
+  static const String roomImageScreen = 'roomImageScreen';
+
 }
 
 abstract class MoreRoutes{

@@ -21,7 +21,7 @@ class ConstantsColors {
   static const orangeShadowColor = Color(0x26e16036);
   static const blueColor = Color(0xff65B8f9);
   static const redColor = Colors.red;
-  static const yellowColor = Color(0xffecff6a);
+  static const yellowColor = Color(0xffffc727);
   static const purpleColor = Color(0xff9080ff);
   static const textColor = Color(0xFF5b5b5b);
   static const textBlackColor = Color(0xff000000);

@@ -17,7 +17,7 @@ class RoomListWidget extends StatelessWidget {
           price: 650,
           desc:
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
-          images: [ImagePaths.room, ImagePaths.room],
+          images: [ImagePaths.room2, ImagePaths.room],
           city: 'Nasr city'),
       RoomModel(
           type: 'Single room',
@@ -25,7 +25,7 @@ class RoomListWidget extends StatelessWidget {
           price: 650,
           desc:
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
-          images: [ImagePaths.room, ImagePaths.room],
+          images: [ImagePaths.room2, ImagePaths.room,],
           city: 'Nasr city'),
       RoomModel(
           type: 'Single room',
@@ -33,7 +33,7 @@ class RoomListWidget extends StatelessWidget {
           price: 650,
           desc:
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
-          images: [ImagePaths.room, ImagePaths.room],
+          images: [ImagePaths.room, ImagePaths.room2,],
           city: 'Nasr city')
     ];
     return ListView.separated(

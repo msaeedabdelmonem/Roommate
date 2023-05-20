@@ -19,6 +19,7 @@ class CustomAppBar extends AppBar {
   double leadingPadding;
   bool? isResult;
   bool isLeadingApplied;
+  Widget? backIcon;
 
   CustomAppBar(
       {this.trailingWidgets: const [],
@@ -32,15 +33,18 @@ class CustomAppBar extends AppBar {
       this.leadingPadding: 0,
       this.toolbarHeight,
       this.isResult,
+      this.backIcon,
       this.isLeadingApplied = true})
       : super(
             automaticallyImplyLeading: isLeadingApplied,
             leading: showBackBtn
-                ? IconButton(
+                ? backIcon ??IconButton(
                     padding: EdgeInsetsDirectional.only(
                         start: 10.w, top: 10.h, end: 10.w),
-                    icon: Icon(Icons.arrow_back_outlined,
-                        size: 22, color: backIconColor),
+                    icon: Icon(
+                         Icons.arrow_back_outlined,
+                        size: 22,
+                        color: backIconColor),
                     onPressed: () async {
                       if (onPobClick != null) {
                         onPobClick();
