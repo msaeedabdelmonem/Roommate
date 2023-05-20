@@ -22,8 +22,8 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   /// emitAuthorizedState
-  Future<void> emitAuthorizedState({int tapIndex = 0}) async {
-    emit(AuthorizedState(tapIndex: tapIndex));
+  Future<void> emitAuthorizedState() async {
+    emit(AuthorizedState());
   }
 
   void emitUnauthorizedState() {
@@ -65,7 +65,6 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   handleRedirectScreen(AuthState state) async {
-    final context = navigatorKey.currentState!.context;
 
     /// Redirect user to login page if the user token expired and
     /// the current state is [UnauthorizedState]
@@ -83,7 +82,7 @@ class AuthCubit extends Cubit<AuthState> {
 
     /// Redirect user to home page in case user signed successfully and has token
     if (state is AuthorizedState) {
-      Navigation(navigatorKey: navigatorKey).navigateAndRemoveUntil(
+     return Navigation(navigatorKey: navigatorKey).navigateAndRemoveUntil(
           routeName: RoutesNames.loginScreen);
     }
     return null;

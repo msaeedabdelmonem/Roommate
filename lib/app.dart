@@ -32,7 +32,7 @@ class RoommateApp extends StatelessWidget {
                   builder: EasyLoading.init(),
                   debugShowCheckedModeBanner: false,
                   theme: Themes().buildThemeData(isArabic: true),
-                  home: (HomeScreen()),
+                  home: (SplashScreen()),
                   locale: LocalizationCubit.localeEn,
                   supportedLocales:
                       context.watch<LocalizationCubit>().supportedLocales,

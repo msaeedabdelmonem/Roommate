@@ -25,7 +25,7 @@ class SocialBtn extends StatelessWidget {
       width: 1.sw,
       height: 45.h,
       text: title,
-      onPressed: onClick(),
+      onPressed:()=> onClick(),
       child: SvgPicture.asset(imagePath),
       radius: 20,
       color: color,
