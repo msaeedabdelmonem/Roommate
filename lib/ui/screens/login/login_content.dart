@@ -5,7 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:roommate/blocs/localization/localization.dart';
 import 'package:roommate/core/constants/app_font_size.dart';
 import 'package:roommate/core/constants/image_paths.dart';
+import 'package:roommate/core/constants/routes.dart';
+import 'package:roommate/core/navigation/navigation.dart';
 import 'package:roommate/core/theme/colors/config_colors.dart';
+import 'package:roommate/main.dart';
 import 'package:roommate/ui/screens/login/widgets/slider_item.dart';
 import 'package:roommate/ui/screens/login/widgets/slider_list.dart';
 import 'package:roommate/ui/screens/login/widgets/social_btn.dart';
@@ -20,7 +23,7 @@ class LoginContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 14.w),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(ImagePaths.login_background),
           fit: BoxFit.fill,
@@ -54,7 +57,9 @@ class LoginContent extends StatelessWidget {
         space(30),
         SocialBtn(
           color: ConstantsColors.blue,
-          onClick: () {},
+          onClick: () {
+            Navigation(navigatorKey: navigatorKey).navigateAndRemoveUntil(routeName: RoutesNames.homeScreen);
+          },
           imagePath: ImagePaths.faceBook,
           title: context.localization.facebook_login,
           textColor: ConstantsColors.whiteColor,
@@ -62,14 +67,18 @@ class LoginContent extends StatelessWidget {
         space(10),
         SocialBtn(
             color: ConstantsColors.whiteColor,
-            onClick: () {},
+            onClick: () {
+              Navigation(navigatorKey: navigatorKey).navigateAndRemoveUntil(routeName: RoutesNames.homeScreen);
+            },
             imagePath: ImagePaths.google,
             textColor: ConstantsColors.blue,
             title: context.localization.google_login),
         space(10),
         SocialBtn(
             color: ConstantsColors.whiteColor,
-            onClick: () {},
+            onClick: () {
+              Navigation(navigatorKey: navigatorKey).navigateAndRemoveUntil(routeName: RoutesNames.homeScreen);
+            },
             imagePath: ImagePaths.apple,
             textColor: ConstantsColors.blackColor,
             title: context.localization.appleLogin),

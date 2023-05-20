@@ -1,0 +1,10 @@
+{
+  "@@locale": "en",
+  "appName": "Roommate",
+  "loginTitle": "Rooms For Rent & Roommate Finder",
+  "loginDesc": "Browse hundreds of profiles, search and contact potential roommates for free.",
+  "facebook_login": "Continue with Facebook",
+  "google_login": "Continue with Google",
+  "appleLogin": "Continue with Apple ID",
+  "search": "search"
+}

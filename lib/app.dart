@@ -9,6 +9,7 @@ import 'package:roommate/blocs/localization/localization_cubit.dart';
 import 'package:roommate/core/constants/cubit_providers_list.dart';
 import 'package:roommate/core/theme/theme.dart';
 import 'package:roommate/main.dart';
+import 'package:roommate/ui/screens/home/home_screen.dart';
 import 'package:roommate/ui/screens/splash/splash_screen.dart';
 import 'core/navigation/router.dart' as router;
 
@@ -31,7 +32,7 @@ class RoommateApp extends StatelessWidget {
                   builder: EasyLoading.init(),
                   debugShowCheckedModeBanner: false,
                   theme: Themes().buildThemeData(isArabic: true),
-                  home: (SplashScreen()),
+                  home: (HomeScreen()),
                   locale: LocalizationCubit.localeEn,
                   supportedLocales:
                       context.watch<LocalizationCubit>().supportedLocales,

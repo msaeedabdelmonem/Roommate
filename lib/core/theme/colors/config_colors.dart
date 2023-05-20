@@ -28,19 +28,16 @@ class ConstantsColors {
   static const transparent = Colors.transparent;
   static const cardShadowColor = Color(0x29000000);
   static const light_grey = Color(0xffa7a7a7);
-  static const blue = Colors.blue;
+  static const blue = Color(0xff0f73ee);
   static const very_light_grey = Color(0xff787676);
   static const pin_field_color = Color(0xfff9f9f9);
-  static const blackColor = Color(0xff484848);
+  static const blackColor = Color(0XFF000000);
   static const lightBlack = Color(0xff707070);
   static const hard_light_grey = Color(0xfffbfbfb);
   static const iconColorMore = Color.fromRGBO(112, 112, 112, 1);
   static const warningColorprimary = Color(0xff8FE4C2);
   static const warningColorsecondary = Color.fromRGBO(246, 252, 246, 1);
-  static const errorColormain = Color(0xffFF6B6B);
-  static const errorColorprimary = Color.fromRGBO(255, 192, 192, 1);
-  static const errorColorsecondary = Color.fromRGBO(254, 248, 248, 1);
-  static const yellowWarningColor = Color.fromRGBO(240, 196, 25, 1);
+
   static const lightGreen = Color(0xFF78C384);
   static const shadow = Color(0xFFF1F1F1);
   static const shadowGrey = Color(0xFFB2B2B2);
@@ -79,40 +76,6 @@ class ConstantsColors {
   static const veryGrey = Color(0XFF04040F66);
   static const hintTextColor = Color.fromRGBO(190, 190, 190, 1);
 
-  // tickets status colors
-  static const ticketStatusColorOpen = Color.fromRGBO(255, 240, 230, 1);
-  static const ticketStatusColorNew = Color.fromRGBO(255, 240, 230, 1);
-  static const ticketStatusColorInprogress = Color.fromRGBO(232, 232, 232, 1);
-  static const ticketStatusColorSolved = Color.fromRGBO(225, 253, 229, 1);
-  static const ticketStatusColorClosed = Color.fromRGBO(255, 232, 232, 1);
-  static const ticketScreenBackgroundColor = Color.fromRGBO(249, 249, 249, 1);
 
-  // tickets status text colors
-  static const ticketStatusTextColorOpen = Color.fromRGBO(251, 164, 98, 1);
-  static const ticketStatusTextColorNew = Colors.white;
-  static const ticketStatusTextColorInprogress =
-      Color.fromRGBO(112, 112, 112, 1);
-  static const ticketStatusTextColorSolved = Color.fromRGBO(120, 195, 132, 1);
-  static const ticketStatusTextColorClosed = Color.fromRGBO(255, 107, 107, 1);
 
-// help and support extra colors
-  static const helpAndSupportOrders = Color.fromRGBO(75, 248, 75, 1);
-  static const helpAndSupportComplain = Color.fromRGBO(178, 178, 178, 1);
-  static const helpAndSupportInvoice = Color.fromRGBO(112, 107, 255, 1);
-  static const helpAndSupportInquiry = Color.fromRGBO(208, 44, 233, 1);
-  static const helpAndSupportAccount = Color.fromRGBO(251, 164, 98, 1);
-  static const ratingBackgroundColor = Color.fromRGBO(4, 4, 15, 0.4);
-  static const lightBlackk = Color.fromRGBO(72, 72, 72, 1);
-  static const darkGreenColor = Color.fromRGBO(120, 195, 132, 1);
-  static const veryVeryGrey = Color.fromRGBO(251, 251, 251, 1);
-  static const darkWhite = Color.fromRGBO(255, 255, 255, 1);
-  static const faceIDBackground = Color.fromRGBO(245, 245, 245, 1);
-  static const orange = Color(0XFFF0C419);
-  static Color shimmerBaseColor = Colors.grey[300]!;
-  static Color shimmerHighLightColor = Colors.grey[100]!;
-
-  ///lock screen colors
-  static const lockText = Color.fromRGBO(49, 163, 67, 1.0);
-  static const nafezColor = Color.fromRGBO(255, 107, 107, 1);
-  static const nafazImageColor = Color(0XFF46968D);
 }

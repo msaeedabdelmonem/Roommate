@@ -2,7 +2,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:roommate/app.dart';
 import 'package:roommate/core/constants/routes.dart';
+import 'package:roommate/models/home/room_model.dart';
+import 'package:roommate/ui/screens/home/home_screen.dart';
 import 'package:roommate/ui/screens/login/login_screen.dart';
+import 'package:roommate/ui/screens/room/room_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   log("Route Name:${settings.name}");
@@ -11,6 +14,15 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case RoutesNames.loginScreen:
       return MaterialPageRoute(
         builder: (context) => LoginScreen(),
+      );
+    case RoutesNames.homeScreen:
+      return MaterialPageRoute(
+        builder: (context) => HomeScreen(),
+      );
+    case RoutesNames.room:
+      return MaterialPageRoute(
+        builder: (context) =>
+            RoomScreen(roomModel: settings.arguments as RoomModel),
       );
     default:
       return MaterialPageRoute(
