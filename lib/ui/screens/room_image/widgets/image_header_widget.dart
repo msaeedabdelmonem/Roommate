@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roommate/core/navigation/navigation.dart';
 import 'package:roommate/core/theme/colors/config_colors.dart';
+import 'package:roommate/core/utils/helper.dart';
 import 'package:roommate/main.dart';
 
 class ImageHeaderWidget extends StatelessWidget {
-  const ImageHeaderWidget({Key? key}) : super(key: key);
-
+  const ImageHeaderWidget({Key? key, required this.roomTile}) : super(key: key);
+  final String roomTile;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -26,10 +27,13 @@ class ImageHeaderWidget extends StatelessWidget {
                 size: 22, color: ConstantsColors.blackColor),
           ),
         ),
-        const Icon(
-          Icons.share,
-          color: ConstantsColors.whiteColor,
-          size: 25,
+        InkWell(
+          onTap: ()=>  Helper().share(roomTile),
+          child: const Icon(
+            Icons.share,
+            color: ConstantsColors.whiteColor,
+            size: 25,
+          ),
         )
       ],
     );

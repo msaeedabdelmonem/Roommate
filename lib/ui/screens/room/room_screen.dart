@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roommate/core/utils/helper.dart';
 import 'package:roommate/models/home/room_model.dart';
 import 'package:roommate/ui/screens/room/room_content.dart';
 import 'package:roommate/ui/widgets/custom_appbar.dart';
@@ -15,8 +16,7 @@ class RoomScreen extends StatelessWidget {
         InkWell(
         child: Icon(Icons.share),
           onTap: () {
-            Share.share("You are invited to book this room",
-                subject: roomModel.title);
+            Helper().share(roomModel.title??'');
           },
         )
       ]),

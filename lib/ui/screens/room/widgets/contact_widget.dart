@@ -6,6 +6,7 @@ import 'package:roommate/core/constants/image_paths.dart';
 import 'package:roommate/core/constants/routes.dart';
 import 'package:roommate/core/navigation/navigation.dart';
 import 'package:roommate/core/theme/colors/config_colors.dart';
+import 'package:roommate/core/utils/helper.dart';
 import 'package:roommate/core/utils/snackbar_presenter.dart';
 import 'package:roommate/main.dart';
 import 'package:roommate/models/home/room_model.dart';
@@ -50,7 +51,8 @@ class ContactWidget extends StatelessWidget {
           Row(
             children: [
               InkWell(
-                  onTap: () => callCustomerService(),
+                  onTap: () =>
+                      Helper().callCustomerService(phone: contacts.phone ?? ''),
                   child: SvgPicture.asset(ImagePaths.phone)),
               space(0, 12),
               InkWell(
@@ -65,18 +67,6 @@ class ContactWidget extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  callCustomerService() async {
-    final Uri _url = Uri.parse('tel:${contacts.phone}');
-    if (await canLaunchUrl(_url)) {
-      final contacts = await launchUrl(_url);
-      await Future.delayed(const Duration(seconds: 1));
-      if (contacts) {
-        Navigation(navigatorKey: navigatorKey)
-            .navigateTo(routeName: RoutesNames.ratingScreen);
-      }
-    }
   }
 
   Future<void> openWhatsApp(BuildContext context) async {

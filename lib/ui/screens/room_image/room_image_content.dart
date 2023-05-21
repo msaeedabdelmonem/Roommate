@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roommate/blocs/localization/localization.dart';
 import 'package:roommate/core/theme/colors/config_colors.dart';
+import 'package:roommate/core/utils/helper.dart';
 import 'package:roommate/models/room_image_model.dart';
 import 'package:roommate/ui/screens/room_image/widgets/image_header_widget.dart';
 import 'package:roommate/ui/widgets/custom_button.dart';
@@ -34,10 +35,11 @@ class RoomImageContent extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          const Expanded(
+          Expanded(
               child: Align(
             alignment: FractionalOffset.topCenter,
-            child: ImageHeaderWidget(),
+            child: ImageHeaderWidget(
+                roomTile: roomImageModel.roomModel.title ?? ''),
           )),
           RoomDetailsWidget(
             height: 140.h,
@@ -57,7 +59,8 @@ class RoomImageContent extends StatelessWidget {
               color: ConstantsColors.blue,
               textColor: ConstantsColors.whiteColor,
               radius: 16.r,
-              onPressed: () {},
+              onPressed: () => Helper().callCustomerService(
+                  phone: roomImageModel.roomModel.contacts?.phone ?? ''),
               child: const Icon(
                 Icons.phone,
                 color: ConstantsColors.whiteColor,
