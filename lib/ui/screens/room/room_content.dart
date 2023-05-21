@@ -87,7 +87,7 @@ class RoomContent extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
             child: Align(
               alignment: FractionalOffset.bottomCenter,
-              child: ContactWidget(),
+              child: ContactWidget(contacts: roomModel.contacts ?? Contacts()),
             ),
           ),
         )

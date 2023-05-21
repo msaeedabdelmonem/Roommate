@@ -6,12 +6,16 @@ import 'package:roommate/core/constants/image_paths.dart';
 import 'package:roommate/core/constants/routes.dart';
 import 'package:roommate/core/navigation/navigation.dart';
 import 'package:roommate/core/theme/colors/config_colors.dart';
+import 'package:roommate/core/utils/snackbar_presenter.dart';
 import 'package:roommate/main.dart';
+import 'package:roommate/models/home/room_model.dart';
 import 'package:roommate/ui/widgets/custom_text.dart';
 import 'package:roommate/ui/widgets/custom_widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactWidget extends StatelessWidget {
-  const ContactWidget({Key? key}) : super(key: key);
+  const ContactWidget({Key? key, required this.contacts}) : super(key: key);
+  final Contacts contacts;
 
   @override
   Widget build(BuildContext context) {
@@ -43,22 +47,60 @@ class ContactWidget extends StatelessWidget {
               ),
             ],
           ),
-          InkWell(
-            onTap: (){
-              Navigation(navigatorKey: navigatorKey).navigateTo(routeName: RoutesNames.ratingScreen);
-            },
-            child: Row(
-              children: [
-                SvgPicture.asset(ImagePaths.phone),
-                space(0, 12),
-                SvgPicture.asset(ImagePaths.messenger),
-                space(0, 12),
-                SvgPicture.asset(ImagePaths.whatsapp),
-              ],
-            ),
+          Row(
+            children: [
+              InkWell(
+                  onTap: () => callCustomerService(),
+                  child: SvgPicture.asset(ImagePaths.phone)),
+              space(0, 12),
+              InkWell(
+                  onTap: () => openMessenger(),
+                  child: SvgPicture.asset(ImagePaths.messenger)),
+              space(0, 12),
+              InkWell(
+                  onTap: () => openWhatsApp(context),
+                  child: SvgPicture.asset(ImagePaths.whatsapp)),
+            ],
           )
         ],
       ),
     );
+  }
+
+  callCustomerService() async {
+    final Uri _url = Uri.parse('tel:${contacts.phone}');
+    if (await canLaunchUrl(_url)) {
+      final contacts = await launchUrl(_url);
+      if (contacts) {
+        Navigation(navigatorKey: navigatorKey)
+            .navigateTo(routeName: RoutesNames.ratingScreen);
+      }
+    }
+  }
+
+  Future<void> openWhatsApp(BuildContext context) async {
+    final Uri _url = Uri.parse('whatsapp://send?phone=${contacts.whatsApp}');
+    if (await canLaunchUrl(_url)) {
+      final whats = await launchUrl(_url);
+      if (whats) {
+        Navigation(navigatorKey: navigatorKey)
+            .navigateTo(routeName: RoutesNames.ratingScreen);
+      }
+    } else {
+      context.showNotice(Notice(
+          message: 'No whats app available right now', isErrorMesage: true));
+    }
+  }
+
+  Future<void> openMessenger() async {
+    final Uri _url = Uri.parse("https://${contacts.messanger}");
+    if (await canLaunchUrl(_url)) {
+      final messenger = await launchUrl(_url);
+      await Future.delayed(const Duration(seconds: 1));
+      if (messenger) {
+        Navigation(navigatorKey: navigatorKey)
+            .navigateTo(routeName: RoutesNames.ratingScreen);
+      }
+    }
   }
 }
