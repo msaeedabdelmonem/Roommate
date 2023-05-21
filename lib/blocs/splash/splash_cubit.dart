@@ -4,8 +4,7 @@ import 'package:roommate/core/data_sources/local/shared_perference.dart';
 
 /// [SplashCubit] to get date before main screen then route
 class SplashCubit extends Cubit<void> {
-  SplashCubit(
-  {
+  SplashCubit({
     required this.authCubit,
     required this.sharedPreferencesHelper,
   }) : super(null);
@@ -26,12 +25,12 @@ class SplashCubit extends Cubit<void> {
   /// the first time to open the app and navigate user to the Login Page.
   Future<void> emitInitialAuthState() async {
     await Future.delayed(const Duration(seconds: 3));
-    // bool isFirstTimeAccess =
-    //     (await sharedPreferencesHelper.getOnBoardingState()) == null;
-    //
-    // if (isFirstTimeAccess) return emitFirstAccessState();
+    final String? userToken = await sharedPreferencesHelper.getToke();
+    final bool isUserAlreadySigned = userToken != null;
 
-    emitAuthorizedState();
+    // if (isUserAlreadySigned) return emitAuthorizedState();
+
+    emitUnauthorizedState();
   }
 
   void emitFirstAccessState() {
@@ -49,7 +48,6 @@ class SplashCubit extends Cubit<void> {
   void emitAuthorizedState() {
     authCubit.emitAuthorizedState();
   }
-
 
   void emitNoInternetConnectionState() {
     authCubit.emitNoInternetConnectionState();

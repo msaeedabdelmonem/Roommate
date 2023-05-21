@@ -6,14 +6,14 @@ class SharedPreferencesHelper {
 
   final SharedPreferences preferences;
 
-  /// Saves the onBoarding state so the user is only presented with onBoarding screen once
-  Future<bool> saveOnBoardingState(String token) async {
+  /// Saves the token
+  Future<bool> saveToken(String token) async {
     return await preferences.setString(
-        SharedPrefsConstants.onBoardingState, token);
+        SharedPrefsConstants.token, token);
   }
 
-  /// fetching OnBoardingState from shared preferences
-  Future<String?> getOnBoardingState() async {
-    return preferences.getString(SharedPrefsConstants.onBoardingState);
+  /// fetching token from shared preferences
+  Future<String?> getToke() async {
+    return preferences.getString(SharedPrefsConstants.token);
   }
 }

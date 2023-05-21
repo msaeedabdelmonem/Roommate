@@ -1,8 +1,14 @@
+import 'package:roommate/core/DI/dependency_injector.dart';
 import 'package:roommate/core/DI/injectors/base_injector.dart';
+import 'package:roommate/repositories/auth_repo.dart';
 
 /// [ReposInjector] hold all application repos dependencies
 class ReposInjector extends BaseInjector {
-  static final reposInjectors = [];
+  static final reposInjectors = [
+    () => diInstance.registerLazySingleton<AuthRepo>(
+          () => AuthRepoImp(),
+        ),
+  ];
 
   /// iterate and inject all repos
   @override

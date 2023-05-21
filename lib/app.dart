@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:logger/logger.dart';
 import 'package:roommate/blocs/app_cubit/auth_cubit.dart';
 import 'package:roommate/blocs/app_cubit/auth_state.dart';
 import 'package:roommate/blocs/localization/localization_cubit.dart';
@@ -12,6 +13,12 @@ import 'package:roommate/main.dart';
 import 'package:roommate/ui/screens/home/home_screen.dart';
 import 'package:roommate/ui/screens/splash/splash_screen.dart';
 import 'core/navigation/router.dart' as router;
+final logger = Logger(
+  printer: PrettyPrinter(
+    lineLength: 90,
+    methodCount: 0,
+  ),
+);
 
 class RoommateApp extends StatelessWidget {
 

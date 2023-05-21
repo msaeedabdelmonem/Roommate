@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:roommate/blocs/login/login_cubit.dart';
+import 'package:roommate/blocs/login/slider_cubit.dart';
 import 'package:roommate/core/theme/colors/config_colors.dart';
 import 'package:roommate/ui/screens/login/widgets/slider_item.dart';
 
@@ -25,11 +25,11 @@ class SliderList extends StatelessWidget {
             enlargeCenterPage: true,
             aspectRatio: 2.0,
             onPageChanged: (index, reason) =>
-                context.read<LoginCubit>().emitNextPage(index),
+                context.read<SliderCubit>().emitNextPage(index),
           ),
         ),
       ),
-      BlocBuilder<LoginCubit, int>(builder: (context, state) {
+      BlocBuilder<SliderCubit, int>(builder: (context, state) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: sliderList.asMap().entries.map((entry) {

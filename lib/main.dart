@@ -10,7 +10,7 @@ final GlobalKey<NavigatorState> homeNavigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   await DependencyInjector().injectModules();
-  SystemChrome.setEnabledSystemUIOverlays([]);
+  // SystemChrome.setEnabledSystemUIOverlays([]);
   runApp(
     DevicePreview(
       enabled: false,

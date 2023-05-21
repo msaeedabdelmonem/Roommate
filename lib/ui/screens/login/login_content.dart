@@ -1,8 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:roommate/blocs/app_cubit/auth_cubit.dart';
 import 'package:roommate/blocs/localization/localization.dart';
+import 'package:roommate/blocs/login/login_cubit.dart';
 import 'package:roommate/core/constants/app_font_size.dart';
 import 'package:roommate/core/constants/image_paths.dart';
 import 'package:roommate/core/constants/routes.dart';
@@ -51,14 +54,16 @@ class LoginContent extends StatelessWidget {
               ]),
         ),
         space(200),
-         SizedBox(height: 200.h,
+        SizedBox(
+          height: 200.h,
           child: SliderList(),
         ),
         space(30),
         SocialBtn(
           color: ConstantsColors.blue,
           onClick: () {
-            Navigation(navigatorKey: navigatorKey).navigateAndRemoveUntil(routeName: RoutesNames.homeScreen);
+            Navigation(navigatorKey: navigatorKey)
+                .navigateAndRemoveUntil(routeName: RoutesNames.homeScreen);
           },
           imagePath: ImagePaths.faceBook,
           title: context.localization.facebook_login,
@@ -67,9 +72,7 @@ class LoginContent extends StatelessWidget {
         space(10),
         SocialBtn(
             color: ConstantsColors.whiteColor,
-            onClick: () {
-              Navigation(navigatorKey: navigatorKey).navigateAndRemoveUntil(routeName: RoutesNames.homeScreen);
-            },
+            onClick: () => context.read<LoginCubit>().signInWithGoogle(),
             imagePath: ImagePaths.google,
             textColor: ConstantsColors.blue,
             title: context.localization.google_login),
@@ -77,7 +80,8 @@ class LoginContent extends StatelessWidget {
         SocialBtn(
             color: ConstantsColors.whiteColor,
             onClick: () {
-              Navigation(navigatorKey: navigatorKey).navigateAndRemoveUntil(routeName: RoutesNames.homeScreen);
+              Navigation(navigatorKey: navigatorKey)
+                  .navigateAndRemoveUntil(routeName: RoutesNames.homeScreen);
             },
             imagePath: ImagePaths.apple,
             textColor: ConstantsColors.blackColor,

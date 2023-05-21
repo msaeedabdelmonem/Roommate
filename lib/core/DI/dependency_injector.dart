@@ -18,7 +18,7 @@ class DependencyInjector {
     WidgetsFlutterBinding.ensureInitialized();
 
     await Future.wait(
-        [DeviceInfoDetails().initPlatformState(), /*Firebase.initializeApp()*/]);
+        [DeviceInfoDetails().initPlatformState(), Firebase.initializeApp()]);
 
     customizeLoader();
 

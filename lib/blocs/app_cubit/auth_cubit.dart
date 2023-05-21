@@ -65,25 +65,17 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   handleRedirectScreen(AuthState state) async {
-
     /// Redirect user to login page if the user token expired and
     /// the current state is [UnauthorizedState]
     if (state is UnauthorizedState) {
-      // Navigation(navigatorKey: navigatorKey)
-      //     .navigateAndRemoveUntil(routeName: RoutesNames.loginScreen);
-    }
-
-    /// Redirect user to onboarding page in case if current state is [FirstTimeAccessState]
-    if (state is FirstTimeAccessState) {
-      // await authRepo.clearSecureStorageData();
-      // Navigation(navigatorKey: navigatorKey)
-      //     .navigateAndRemoveUntil(routeName: RoutesNames.onBoardingScreen);
+      Navigation(navigatorKey: navigatorKey)
+          .navigateAndRemoveUntil(routeName: RoutesNames.loginScreen);
     }
 
     /// Redirect user to home page in case user signed successfully and has token
     if (state is AuthorizedState) {
-     return Navigation(navigatorKey: navigatorKey).navigateAndRemoveUntil(
-          routeName: RoutesNames.loginScreen);
+      return Navigation(navigatorKey: navigatorKey)
+          .navigateAndRemoveUntil(routeName: RoutesNames.homeScreen);
     }
     return null;
   }
