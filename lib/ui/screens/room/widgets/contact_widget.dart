@@ -71,6 +71,7 @@ class ContactWidget extends StatelessWidget {
     final Uri _url = Uri.parse('tel:${contacts.phone}');
     if (await canLaunchUrl(_url)) {
       final contacts = await launchUrl(_url);
+      await Future.delayed(const Duration(seconds: 1));
       if (contacts) {
         Navigation(navigatorKey: navigatorKey)
             .navigateTo(routeName: RoutesNames.ratingScreen);
@@ -82,6 +83,7 @@ class ContactWidget extends StatelessWidget {
     final Uri _url = Uri.parse('whatsapp://send?phone=${contacts.whatsApp}');
     if (await canLaunchUrl(_url)) {
       final whats = await launchUrl(_url);
+      await Future.delayed(const Duration(seconds: 1));
       if (whats) {
         Navigation(navigatorKey: navigatorKey)
             .navigateTo(routeName: RoutesNames.ratingScreen);
