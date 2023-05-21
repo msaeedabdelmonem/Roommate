@@ -25,10 +25,10 @@ class SplashCubit extends Cubit<void> {
   /// the first time to open the app and navigate user to the Login Page.
   Future<void> emitInitialAuthState() async {
     await Future.delayed(const Duration(seconds: 3));
-    final String? userToken = await sharedPreferencesHelper.getToke();
-    final bool isUserAlreadySigned = userToken != null;
+    final String? userToken = await sharedPreferencesHelper.getToken();
+    final bool isUserAlreadySigned = userToken != null&&userToken != '';
 
-    // if (isUserAlreadySigned) return emitAuthorizedState();
+    if (isUserAlreadySigned) return emitAuthorizedState();
 
     emitUnauthorizedState();
   }

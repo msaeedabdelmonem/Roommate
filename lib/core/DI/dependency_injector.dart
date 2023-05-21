@@ -4,6 +4,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get_it/get_it.dart';
 import 'package:roommate/core/DI/injectors/injector_holder.dart';
 import 'package:roommate/core/data_sources/local/shared_perference.dart';
+import 'package:roommate/core/theme/colors/config_colors.dart';
 import 'package:roommate/core/utils/tools/device_info_details.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -44,7 +45,7 @@ class DependencyInjector {
       ..radius = 20
       ..backgroundColor = Colors.transparent
       ..maskColor = Colors.white
-      ..indicatorColor = Colors.green
+      ..indicatorColor = ConstantsColors.mainBackgroundColor
       ..userInteractions = false
       ..dismissOnTap = false
       ..boxShadow = <BoxShadow>[]

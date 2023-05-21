@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roommate/blocs/localization/localization.dart';
@@ -24,7 +25,9 @@ class RoomImageContent extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           alignment: Alignment.center,
-          image: AssetImage(roomImageModel.selectedImage),
+          image: CachedNetworkImageProvider(
+            roomImageModel.selectedImage,
+          ),
           fit: BoxFit.contain,
         ),
       ),

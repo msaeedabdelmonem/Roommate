@@ -34,11 +34,10 @@ class RoomContent extends StatelessWidget {
               ),
             ),
             options: CarouselOptions(
-              height: 300.h,
-              autoPlay: true,
-              enlargeCenterPage: true,
-              aspectRatio: 2.0,
-            ),
+                height: 300.h,
+                enlargeCenterPage: true,
+                aspectRatio: 2.0,
+                enableInfiniteScroll: false),
           ),
         ),
         Padding(

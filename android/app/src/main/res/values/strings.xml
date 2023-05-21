@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Roommate</string>
+<!--        release   -->
+        <string name="facebook_app_id">197743586531136</string>
+        <string name="fb_login_protocol_scheme">fb197743586531136</string>
+        <string name="facebook_client_token">56a76936b8189f0902fa5f96e873ac16</string>
+
+
+
+
+    <!--    release   -->
+<!--    <string name="facebook_app_id">329140024931389</string>-->
+<!--    <string name="fb_login_protocol_scheme">329140024931389</string>-->
+    <!--    release   -->
+    <!--    debug     -->
+<!--    <string name="facebook_app_id">2951653795071672</string>-->
+<!--    <string name="fb_login_protocol_scheme">2951653795071672</string>-->
+    <!--    debug     -->
+
+</resources>

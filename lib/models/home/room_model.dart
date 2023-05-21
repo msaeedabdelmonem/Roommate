@@ -1,12 +1,12 @@
 class RoomModel {
-  int? id;
+  String? id;
   String? city;
   String? type;
   List<String>? images;
   String? title;
-  int? price;
+  dynamic? price;
   String? desc;
-  List<Contact>? contacts;
+  Contacts? contacts;
 
   RoomModel({
     this.id,
@@ -30,9 +30,8 @@ class RoomModel {
         price: json["price"],
         desc: json["desc"],
         contacts: json["contacts"] == null
-            ? []
-            : List<Contact>.from(
-                json["contacts"]!.map((x) => Contact.fromJson(x))),
+            ? null
+            : Contacts.fromJson(json["contacts"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -44,24 +43,22 @@ class RoomModel {
         "title": title,
         "price": price,
         "desc": desc,
-        "contacts": contacts == null
-            ? []
-            : List<dynamic>.from(contacts!.map((x) => x.toJson())),
+        "contacts": contacts?.toJson(),
       };
 }
 
-class Contact {
+class Contacts {
   String? whatsApp;
   String? messanger;
   String? phone;
 
-  Contact({
+  Contacts({
     this.whatsApp,
     this.messanger,
     this.phone,
   });
 
-  factory Contact.fromJson(Map<String, dynamic> json) => Contact(
+  factory Contacts.fromJson(Map<String, dynamic> json) => Contacts(
         whatsApp: json["whatsApp"],
         messanger: json["messanger"],
         phone: json["phone"],

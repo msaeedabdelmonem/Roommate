@@ -61,10 +61,7 @@ class LoginContent extends StatelessWidget {
         space(30),
         SocialBtn(
           color: ConstantsColors.blue,
-          onClick: () {
-            Navigation(navigatorKey: navigatorKey)
-                .navigateAndRemoveUntil(routeName: RoutesNames.homeScreen);
-          },
+          onClick: () => context.read<LoginCubit>().signInWithFaceBook(),
           imagePath: ImagePaths.faceBook,
           title: context.localization.facebook_login,
           textColor: ConstantsColors.whiteColor,

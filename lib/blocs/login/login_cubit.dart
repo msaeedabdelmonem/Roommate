@@ -26,4 +26,16 @@ class LoginCubit extends Cubit<AuthState> {
       Loading.dismissLoading();
     });
   }
+
+  Future<void> signInWithFaceBook() async {
+    Loading.showLoading();
+    await authRepo.signInWithFacebook(onSuccess: (token) async {
+      await sharedPreferencesHelper.saveToken(token);
+
+      authCubit.emitAuthorizedState();
+      Loading.dismissLoading();
+    }, onFail: () {
+      Loading.dismissLoading();
+    });
+  }
 }

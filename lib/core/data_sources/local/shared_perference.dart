@@ -13,7 +13,7 @@ class SharedPreferencesHelper {
   }
 
   /// fetching token from shared preferences
-  Future<String?> getToke() async {
+  Future<String?> getToken() async {
     return preferences.getString(SharedPrefsConstants.token);
   }
 }

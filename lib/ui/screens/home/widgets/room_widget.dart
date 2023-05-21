@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roommate/core/constants/app_font_size.dart';
@@ -47,11 +48,18 @@ class RoomImages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 1.sw,
-      height: 190.h,
-      child: ClipRRect(
-          borderRadius: BorderRadius.circular(16.0.r), child: Image.asset(image,fit: BoxFit.fitWidth,)),
+    return
+      ClipRRect(
+      borderRadius: BorderRadius.circular(16.0.r),
+      child: CachedNetworkImage(
+        imageUrl: image,
+        width: 1.sw,
+        height: 190.h,
+        fit: BoxFit.fitWidth,
+        useOldImageOnUrlChange: true,
+        placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+        errorWidget: (context, url, error) => Icon(Icons.error),
+      ),
     );
   }
 }
