@@ -20,7 +20,7 @@ InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
         )),
     focusedBorder: OutlineInputBorder(
         borderSide:
-            const BorderSide(color: ConstantsColors.grayShadeColor, width: 1.0),
+            const BorderSide(color: ConstantsColors.blackColor, width: 1.0),
         borderRadius: BorderRadius.all(
           Radius.circular(10.r),
         )),

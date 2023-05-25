@@ -49,6 +49,8 @@ class CustomTextFormField extends StatelessWidget {
   final FontWeight? fontWeight;
   final TextAlign textAlign;
   final double? textHeight;
+  final bool enabledBorder;
+  final void Function()? onComplete;
   const CustomTextFormField(
       {Key? key,
       this.text = '',
@@ -90,8 +92,9 @@ class CustomTextFormField extends StatelessWidget {
       this.textHeight = 1,
       this.contentPadding,
       this.fontWeight,
+        this.onComplete,
         this.isClickable = true,
-        this.textAlign = TextAlign.start
+        this.textAlign = TextAlign.start, this.enabledBorder =true
       })
       : super(key: key);
 
@@ -128,7 +131,7 @@ class CustomTextFormField extends StatelessWidget {
           textInputAction: textInputAction,
           maxLength: maxLength,
           maxLines: maxLines,
-          minLines: minLines,
+          minLines: minLines,onEditingComplete: onComplete,
           inputFormatters: inputFormatters,
           decoration: InputDecoration(
             errorMaxLines: 2,
@@ -146,7 +149,7 @@ class CustomTextFormField extends StatelessWidget {
             fillColor:ConstantsColors.whiteColor,
             filled: true,
             focusColor: ConstantsColors.secondaryBackgroundColor,
-            enabledBorder: OutlineInputBorder(
+            enabledBorder:enabledBorder? OutlineInputBorder(
               borderSide: BorderSide(
                 width: 1,
                 color: hasSpecificErrorMessage
@@ -154,8 +157,8 @@ class CustomTextFormField extends StatelessWidget {
                     : ConstantsColors.bordercolor,
               ), //<-- SEE HERE
               borderRadius: BorderRadius.circular(radius ?? 5.0),
-            ),
-            disabledBorder: OutlineInputBorder(
+            ):null,
+            disabledBorder:enabledBorder? OutlineInputBorder(
               borderSide: BorderSide(
                 width: 1,
                 color: hasSpecificErrorMessage
@@ -163,8 +166,8 @@ class CustomTextFormField extends StatelessWidget {
                     : ConstantsColors.bordercolor,
               ), //<-- SEE HERE
               borderRadius: BorderRadius.circular(radius ?? 5.0),
-            ),
-            focusedBorder: OutlineInputBorder(
+            ):null,
+            focusedBorder:enabledBorder? OutlineInputBorder(
               borderSide: BorderSide(
                 width: 1,
                 color: hasSpecificErrorMessage
@@ -172,7 +175,7 @@ class CustomTextFormField extends StatelessWidget {
                     : ConstantsColors.bordercolor,
               ), //<-- SEE HERE
               borderRadius: BorderRadius.circular(radius ?? 5.0),
-            ),
+            ):null,
             iconColor: ConstantsColors.secondaryColor,
             counterText: '',
           ),

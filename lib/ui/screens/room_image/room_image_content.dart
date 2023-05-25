@@ -39,7 +39,7 @@ class RoomImageContent extends StatelessWidget {
               child: Align(
             alignment: FractionalOffset.topCenter,
             child: ImageHeaderWidget(
-                roomTile: roomImageModel.roomModel.title ?? ''),
+                roomModel: roomImageModel.roomModel),
           )),
           RoomDetailsWidget(
             height: 140.h,

@@ -110,10 +110,10 @@ class AppLocalization {
     );
   }
 
-  /// `search`
+  /// `Search for rooms`
   String get search {
     return Intl.message(
-      'search',
+      'Search for rooms',
       name: 'search',
       desc: '',
       args: [],
@@ -135,6 +135,36 @@ class AppLocalization {
     return Intl.message(
       'Contact The Owner',
       name: 'contact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price`
+  String get price {
+    return Intl.message(
+      'Price',
+      name: 'price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location`
+  String get location {
+    return Intl.message(
+      'Location',
+      name: 'location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type`
+  String get type {
+    return Intl.message(
+      'Type',
+      name: 'type',
       desc: '',
       args: [],
     );

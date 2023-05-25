@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roommate/blocs/app_cubit/auth_cubit.dart';
+import 'package:roommate/core/DI/dependency_injector.dart';
 import 'package:roommate/core/data_sources/local/shared_perference.dart';
+import 'package:roommate/core/utils/tools/dynamic_link.dart';
 
 /// [SplashCubit] to get date before main screen then route
 class SplashCubit extends Cubit<void> {
@@ -26,8 +28,10 @@ class SplashCubit extends Cubit<void> {
   Future<void> emitInitialAuthState() async {
     await Future.delayed(const Duration(seconds: 3));
     final String? userToken = await sharedPreferencesHelper.getToken();
-    final bool isUserAlreadySigned = userToken != null&&userToken != '';
-
+    final bool isUserAlreadySigned = userToken != null && userToken != '';
+    if (await diInstance<DynamicLink>().initDynamicLinks()) {
+      return;
+    }
     if (isUserAlreadySigned) return emitAuthorizedState();
 
     emitUnauthorizedState();

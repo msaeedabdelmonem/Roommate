@@ -4,7 +4,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:roommate/blocs/localization/localization.dart';
 import 'package:roommate/core/constants/app_font_size.dart';
 import 'package:roommate/core/constants/image_paths.dart';
+import 'package:roommate/core/constants/routes.dart';
+import 'package:roommate/core/navigation/navigation.dart';
 import 'package:roommate/core/theme/colors/config_colors.dart';
+import 'package:roommate/main.dart';
 import 'package:roommate/ui/widgets/custom_text.dart';
 import 'package:roommate/ui/widgets/custom_widgets.dart';
 
@@ -34,7 +37,14 @@ class HeaderWidget extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 )
               ]),
-          SvgPicture.asset(ImagePaths.person)
+          Row(children: [
+            InkWell(onTap: (){
+              Navigation(navigatorKey: navigatorKey).navigateTo(routeName: RoutesNames.searchScreen);
+            },child: SvgPicture.asset(ImagePaths.search)),
+            space(0,16),
+            SvgPicture.asset(ImagePaths.profile)
+          ],)
+          // SvgPicture.asset(ImagePaths.person)
         ],
       ),
     );

@@ -1,38 +1,49 @@
+import 'dart:convert';
+
+import 'package:roommate/core/constants/routes.dart';
+
+RoomModel roomModelFromJson(String str) => RoomModel.fromJson(json.decode(str));
+
+String roomModelToJson(RoomModel data) => json.encode(data.toJson());
+
 class RoomModel {
   String? id;
   String? city;
   String? type;
   List<String>? images;
   String? title;
-  dynamic? price;
+  dynamic price;
   String? desc;
   Contacts? contacts;
+  String? path;
+  String? district;
 
-  RoomModel({
-    this.id,
-    this.city,
-    this.type,
-    this.images,
-    this.title,
-    this.price,
-    this.desc,
-    this.contacts,
-  });
+  RoomModel(
+      {this.id,
+      this.city,
+      this.type,
+      this.images,
+      this.title,
+      this.price,
+      this.desc,
+      this.contacts,
+      this.path,
+      this.district});
 
   factory RoomModel.fromJson(Map<String, dynamic> json) => RoomModel(
-        id: json["id"],
-        city: json["city"],
-        type: json["type"],
-        images: json["images"] == null
-            ? ['']
-            : List<String>.from(json["images"]!.map((x) => x)),
-        title: json["title"],
-        price: json["price"],
-        desc: json["desc"],
-        contacts: json["contacts"] == null
-            ? null
-            : Contacts.fromJson(json["contacts"]),
-      );
+      id: json["id"],
+      city: json["city"],
+      type: json["type"],
+      images: json["images"] == null
+          ? ['']
+          : List<String>.from(json["images"]!.map((x) => x)),
+      title: json["title"],
+      price: json["price"],
+      desc: json["desc"],
+      contacts:
+          json["contacts"] == null ? null : Contacts.fromJson(json["contacts"]),
+      path: json["path"],
+      district: json["district"]);
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -44,6 +55,8 @@ class RoomModel {
         "price": price,
         "desc": desc,
         "contacts": contacts?.toJson(),
+        "path": RoutesNames.room,
+        "district": district,
       };
 }
 
