@@ -169,6 +169,16 @@ class AppLocalization {
       args: [],
     );
   }
+
+  /// `I’m looking for`
+  String get lookingFor {
+    return Intl.message(
+      'I’m looking for',
+      name: 'lookingFor',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {

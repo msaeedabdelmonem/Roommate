@@ -42,21 +42,19 @@ class Helper {
     showModalBottomSheet(
       context: navigatorKey.currentState!.context,
       isScrollControlled: true,
+      isDismissible: false,
       backgroundColor: Colors.transparent,
       builder: (ctx) {
-        return GestureDetector(
-          onTap: () => Navigator.of(navigatorKey.currentState!.context).pop(),
-          child: Container(
-            color: Color.fromRGBO(0, 0, 0, 0.001),
-            child: DraggableScrollableSheet(
-              initialChildSize: 0.4,
-              minChildSize: 0.2,
-              maxChildSize:isLocation?0.75: 0.50,
-              builder: (ctx, controller) {
-                bottomSheetScrollable = controller;
-                return widget;
-              },
-            ),
+        return Container(
+          color: Color.fromRGBO(0, 0, 0, 0.001),
+          child: DraggableScrollableSheet(
+            initialChildSize: 0.4,
+            minChildSize: 0.2,
+            maxChildSize:isLocation?0.75: 0.50,
+            builder: (ctx, controller) {
+              bottomSheetScrollable = controller;
+              return widget;
+            },
           ),
         );
       },

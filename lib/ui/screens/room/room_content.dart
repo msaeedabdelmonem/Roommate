@@ -23,82 +23,94 @@ class RoomContent extends StatelessWidget {
       SizedBox(
         height: 1.sh,
         child: Stack(children: [
-        SizedBox(
-          height: 620.h,
-          child: ListView(
-          children: [
-            SizedBox(
-              height: 200.h,
-              child: CarouselSlider(
-                items: List.generate(
-                  roomModel.images!.length,
-                  (index) => InkWell(
-                    onTap: () => _onImageClick(imageIndex: index),
-                    child: RoomImages(
-                      image: roomModel.images?[index] ?? '',
+          SizedBox(
+            height: 650.h,
+            child: ListView(
+              children: [
+                SizedBox(
+                  height: 200.h,
+                  child: CarouselSlider(
+                    items: List.generate(
+                      roomModel.images!.length,
+                          (index) =>
+                          InkWell(
+                            onTap: () => _onImageClick(imageIndex: index),
+                            child: RoomImages(
+                              image: roomModel.images?[index] ?? '',
+                            ),
+                          ),
                     ),
+                    options: CarouselOptions(
+                        height: 300.h,
+                        enlargeCenterPage: true,
+                        aspectRatio: 2.0,
+                        enableInfiniteScroll: false),
                   ),
                 ),
-                options: CarouselOptions(
-                    height: 300.h,
-                    enlargeCenterPage: true,
-                    aspectRatio: 2.0,
-                    enableInfiniteScroll: false),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: RoomWidget(
-                roomModel: roomModel,
-                showSliderImages: true,
-              ),
-            ),
-            space(16),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Divider(
-                height: 1,
-                color: ConstantsColors.lightGreyColor,
-                thickness: 1,
-              ),
-            ),
-            space(16),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: CustomText(
-                text: 'Description',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: RoomWidget(
+                    roomModel: roomModel,
+                    showSliderImages: true,
+                  ),
+                ),
+                space(16),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: Divider(
+                    height: 1,
+                    color: ConstantsColors.lightGreyColor,
+                    thickness: 1,
+                  ),
+                ),
+                space(16),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: CustomText(
+                    text: 'Description',
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .bodySmall
+                        ?.copyWith(
                       color: ConstantsColors.greyColor,
                       fontSize: AppFontSize.smallMedium,
                       fontWeight: FontWeight.w700,
                     ),
-              ),
-            ),
-            space(8),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: CustomText(
-                maxLines: 30,
-                textHeight: 24,
-                text: roomModel.desc ?? '',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  ),
+                ),
+                space(8),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: CustomText(
+                    maxLines: 30,
+                    textHeight: 24,
+                    text: roomModel.desc ?? '',
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .bodySmall
+                        ?.copyWith(
                       color: ConstantsColors.blackColor,
                       fontSize: AppFontSize.x_medium,
                       fontWeight: FontWeight.w500,
                     ),
-              ),
+                  ),
+                ),
+              ],
             ),
-          ],
-    ),
-        ),
+          ),
+          roomModel.contacts?.phone != null ||
+              roomModel.contacts?.whatsApp != null ||
+              roomModel.contacts?.messanger != null ?
           Positioned(
             bottom: 8.h,
             left: 16.w,
             right: 16.w,
             child: ContactWidget(contacts: roomModel.contacts ?? Contacts()),
-          )]),
+          ):SizedBox()
+        ]),
       );
-
   }
 
   void _onImageClick({required int imageIndex}) {
