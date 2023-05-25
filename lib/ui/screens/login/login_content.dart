@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,7 +37,7 @@ class LoginContent extends StatelessWidget {
       child: Column(children: [
         Container(
           height: 50.h,
-          margin: EdgeInsets.symmetric(vertical: 67.h),
+          margin: EdgeInsets.symmetric(vertical: Platform.isIOS?67.h:90.h),
           child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -74,15 +76,18 @@ class LoginContent extends StatelessWidget {
             textColor: ConstantsColors.mainBackgroundColor,
             title: context.localization.google_login),
         space(10),
-        SocialBtn(
-            color: ConstantsColors.whiteColor,
-            onClick: () {
-              Navigation(navigatorKey: navigatorKey)
-                  .navigateAndRemoveUntil(routeName: RoutesNames.homeScreen);
-            },
-            imagePath: ImagePaths.apple,
-            textColor: ConstantsColors.blackColor,
-            title: context.localization.appleLogin),
+        Visibility(
+          visible: Platform.isIOS,
+          child: SocialBtn(
+              color: ConstantsColors.whiteColor,
+              onClick: () {
+                Navigation(navigatorKey: navigatorKey)
+                    .navigateAndRemoveUntil(routeName: RoutesNames.homeScreen);
+              },
+              imagePath: ImagePaths.apple,
+              textColor: ConstantsColors.blackColor,
+              title: context.localization.appleLogin),
+        ),
       ]),
     );
   }
