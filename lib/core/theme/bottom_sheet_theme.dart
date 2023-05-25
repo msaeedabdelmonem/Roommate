@@ -4,7 +4,7 @@ var bottomSheetTheme = BottomSheetThemeData(
   elevation: 5,
   backgroundColor: Colors.white,
   clipBehavior: Clip.antiAliasWithSaveLayer,
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(25),
-  ),
+  // shape: RoundedRectangleBorder(
+  //   borderRadius: BorderRadius.circular(25),
+  // ),
 );

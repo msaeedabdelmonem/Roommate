@@ -16,8 +16,10 @@ class RoomImageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: ConstantsColors.blackColor,
-        body: RoomImageContent(
-          roomImageModel: roomImageModel,
+        body: SafeArea(
+          child: RoomImageContent(
+            roomImageModel: roomImageModel,
+          ),
         ));
   }
 }

@@ -8,5 +8,8 @@
   "appleLogin": "Continue with Apple ID",
   "search": "search",
   "rate": "Rate the App",
-  "contact": "Contact The Owner"
+  "contact": "Contact The Owner",
+  "price": "Price",
+  "location": "Location",
+  "type": "Type"
 }

@@ -21,16 +21,19 @@ class SocialBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomButton.icon(
-      width: 1.sw,
-      height: 45.h,
-      text: title,
-      onPressed:()=> onClick(),
-      child: SvgPicture.asset(imagePath),
-      radius: 20,
-      color: color,
-      textSize: AppFontSize.small,
-      textColor: textColor,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 14.w),
+      child: CustomButton.icon(
+        width: 1.sw,
+        height: 45.h,
+        text: title,
+        onPressed:()=> onClick(),
+        child: SvgPicture.asset(imagePath),
+        radius: 20,
+        color: color,
+        textSize: AppFontSize.small,
+        textColor: textColor,
+      ),
     );
   }
 }

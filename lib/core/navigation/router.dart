@@ -9,6 +9,7 @@ import 'package:roommate/ui/screens/login/login_screen.dart';
 import 'package:roommate/ui/screens/rating/rating_screen.dart';
 import 'package:roommate/ui/screens/room/room_screen.dart';
 import 'package:roommate/ui/screens/room_image/room_image_screen.dart';
+import 'package:roommate/ui/screens/search/search_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   log("Route Name:${settings.name}");
@@ -37,6 +38,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) =>
             RatingScreen(),
+      );
+    case RoutesNames.searchScreen:
+      return MaterialPageRoute(
+        builder: (context) =>
+            SearchScreen(),
       );
     default:
       return MaterialPageRoute(

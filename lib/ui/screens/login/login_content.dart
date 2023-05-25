@@ -25,7 +25,7 @@ class LoginContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 14.w),
+
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(ImagePaths.login_background),
@@ -60,7 +60,7 @@ class LoginContent extends StatelessWidget {
         ),
         space(30),
         SocialBtn(
-          color: ConstantsColors.blue,
+          color: ConstantsColors.mainBackgroundColor,
           onClick: () => context.read<LoginCubit>().signInWithFaceBook(),
           imagePath: ImagePaths.faceBook,
           title: context.localization.facebook_login,
@@ -71,7 +71,7 @@ class LoginContent extends StatelessWidget {
             color: ConstantsColors.whiteColor,
             onClick: () => context.read<LoginCubit>().signInWithGoogle(),
             imagePath: ImagePaths.google,
-            textColor: ConstantsColors.blue,
+            textColor: ConstantsColors.mainBackgroundColor,
             title: context.localization.google_login),
         space(10),
         SocialBtn(

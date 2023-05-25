@@ -6,6 +6,7 @@ import 'package:roommate/core/DI/injectors/injector_holder.dart';
 import 'package:roommate/core/data_sources/local/shared_perference.dart';
 import 'package:roommate/core/theme/colors/config_colors.dart';
 import 'package:roommate/core/utils/tools/device_info_details.dart';
+import 'package:roommate/core/utils/tools/dynamic_link.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -31,7 +32,8 @@ class DependencyInjector {
         SharedPreferencesHelper(
             preferences: (await SharedPreferences.getInstance())));
     await GetIt.I.getAsync<SharedPreferencesHelper>();
-
+    GetIt.I.registerLazySingleton<DynamicLink>(
+            () => DynamicLink());
     /// Injects all modules in app
     InjectorHolder.injectAllApplicationModules();
   }

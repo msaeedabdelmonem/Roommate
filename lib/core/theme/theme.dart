@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:roommate/core/theme/app_bar_theme.dart';
 import 'package:roommate/core/theme/bottom_sheet_theme.dart';
 import 'package:roommate/core/theme/button_theme.dart';
@@ -16,7 +17,7 @@ class Themes {
         colorScheme: ColorScheme.fromSwatch().copyWith(
           secondary: ConstantsColors.lightGreyColor,
           primary: ConstantsColors.mainBackgroundColor,
-        ),
+        ),fontFamily: GoogleFonts.quicksand().fontFamily,
         appBarTheme: appBarTheme,
         textTheme: textTheme.apply(fontSizeFactor: 1.sp),
         inputDecorationTheme: inputDecorationTheme,

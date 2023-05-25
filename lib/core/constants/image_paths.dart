@@ -18,4 +18,6 @@ abstract class ImagePaths {
   static const String rating = "assets/images/rating.svg";
   static const String warningError = "assets/icons/warning_error.svg";
   static const String warningSuccess = "assets/icons/warning_success.svg";
+  static const String share = "assets/icons/share.svg";
+
 }

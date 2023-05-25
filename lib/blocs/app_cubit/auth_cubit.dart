@@ -1,8 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 import 'package:roommate/blocs/app_cubit/auth_state.dart';
+import 'package:roommate/core/DI/dependency_injector.dart';
 import 'package:roommate/core/constants/routes.dart';
 import 'package:roommate/core/navigation/navigation.dart';
+import 'package:roommate/core/utils/tools/dynamic_link.dart';
 import 'package:roommate/main.dart';
 
 /// Handle Application Auth States. Used to set app root widget
@@ -69,7 +72,7 @@ class AuthCubit extends Cubit<AuthState> {
     /// the current state is [UnauthorizedState]
     if (state is UnauthorizedState) {
       Navigation(navigatorKey: navigatorKey)
-          .navigateAndRemoveUntil(routeName: RoutesNames.loginScreen);
+          .navigateAndRemoveUntil(routeName: RoutesNames.searchScreen);
     }
 
     /// Redirect user to home page in case user signed successfully and has token
@@ -77,6 +80,6 @@ class AuthCubit extends Cubit<AuthState> {
       return Navigation(navigatorKey: navigatorKey)
           .navigateAndRemoveUntil(routeName: RoutesNames.homeScreen);
     }
-    return null;
+
   }
 }

@@ -15,20 +15,22 @@ InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
           color: ConstantsColors.lightGreyColor,
           width: 1.0,
         ),
-        borderRadius: BorderRadius.all(
-          Radius.circular(10.r),
+        borderRadius: BorderRadius.only(topLeft:
+          Radius.circular(10.r),topRight:  Radius.circular(10.r)
         )),
     focusedBorder: OutlineInputBorder(
         borderSide:
             const BorderSide(color: ConstantsColors.grayShadeColor, width: 1.0),
-        borderRadius: BorderRadius.all(
-          Radius.circular(10.r),
+        borderRadius: BorderRadius.only(topLeft:
+        Radius.circular(10.r),topRight:  Radius.circular(10.r)
         )),
     errorBorder: OutlineInputBorder(
       borderSide: const BorderSide(
         color: ConstantsColors.redColor,
       ),
-      borderRadius: BorderRadius.circular(4.r),
+      borderRadius: BorderRadius.only(topLeft:
+      Radius.circular(10.r),topRight:  Radius.circular(10.r)
+      )
     ),
     errorStyle: TextStyle(
       fontSize: AppFontSize.mid_small,
@@ -46,7 +48,9 @@ InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
         color: ConstantsColors.textBlackColor,
         width: 1,
       ),
-      borderRadius: BorderRadius.circular(4.r),
+      borderRadius: BorderRadius.only(topLeft:
+      Radius.circular(10.r),topRight:  Radius.circular(10.r)
+      )
     ),
     labelStyle: MaterialStateTextStyle.resolveWith((Set<MaterialState> states) {
       final Color color = states.contains(MaterialState.error)

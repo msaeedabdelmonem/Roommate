@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ConstantsColors {
-  static const mainBackgroundColor = Colors.blue;
+  static const mainBackgroundColor = Color(0xff0f73ee);
   static const mainBackgroundColorMedium = Color.fromRGBO(49, 163, 67, .4);
   static const lightGreenColor = Color.fromRGBO(233, 246, 235, 1);
   static const lightGreyColor = Color.fromRGBO(211, 211, 211, 0.6);
   static const greyColor = Color.fromRGBO(128, 128, 128, 1);
   static const lightRed = Color.fromRGBO(255, 112, 112, 1);
-  static const grayShadeColor = Color(0xffb2b2b2);
+  static const grayShadeColor = Color(0xffe4e7eb);
   static const whiteColor = Color.fromRGBO(255, 255, 255, 1);
   static const backTabColor = Color.fromRGBO(163, 172, 194, 0.14);
   static const blackTitleColor = Color.fromRGBO(72, 72, 72, 1);

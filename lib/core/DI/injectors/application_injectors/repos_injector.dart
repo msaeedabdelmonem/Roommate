@@ -2,6 +2,7 @@ import 'package:roommate/core/DI/dependency_injector.dart';
 import 'package:roommate/core/DI/injectors/base_injector.dart';
 import 'package:roommate/repositories/auth_repo.dart';
 import 'package:roommate/repositories/home/home_repo.dart';
+import 'package:roommate/repositories/home/search_repo.dart';
 
 /// [ReposInjector] hold all application repos dependencies
 class ReposInjector extends BaseInjector {
@@ -12,7 +13,9 @@ class ReposInjector extends BaseInjector {
         () => diInstance.registerLazySingleton<HomeRepo>(
           () => HomeRepoImp(),
     ),
-
+        () => diInstance.registerLazySingleton<SearchRepo>(
+          () => SearchRepoImp(),
+    ),
   ];
 
   /// iterate and inject all repos

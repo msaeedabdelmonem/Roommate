@@ -1,13 +1,20 @@
+import 'dart:convert';
+
+import 'package:roommate/core/constants/routes.dart';
+
+RoomModel roomModelFromJson(String str) => RoomModel.fromJson(json.decode(str));
+
+String roomModelToJson(RoomModel data) => json.encode(data.toJson());
 class RoomModel {
   String? id;
   String? city;
   String? type;
   List<String>? images;
   String? title;
-  dynamic? price;
+  dynamic price;
   String? desc;
   Contacts? contacts;
-
+  String? path;
   RoomModel({
     this.id,
     this.city,
@@ -17,6 +24,7 @@ class RoomModel {
     this.price,
     this.desc,
     this.contacts,
+    this.path
   });
 
   factory RoomModel.fromJson(Map<String, dynamic> json) => RoomModel(
@@ -32,6 +40,7 @@ class RoomModel {
         contacts: json["contacts"] == null
             ? null
             : Contacts.fromJson(json["contacts"]),
+    path: json["path"]
       );
 
   Map<String, dynamic> toJson() => {
@@ -44,6 +53,7 @@ class RoomModel {
         "price": price,
         "desc": desc,
         "contacts": contacts?.toJson(),
+        "path": RoutesNames.room,
       };
 }
 
