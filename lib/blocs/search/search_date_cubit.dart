@@ -3,7 +3,6 @@ import 'package:roommate/blocs/home/home_cubit.dart';
 import 'package:roommate/blocs/request_state.dart';
 import 'package:roommate/blocs/search/location_cubit.dart';
 import 'package:roommate/blocs/search/search_cubit.dart';
-import 'package:roommate/blocs/splash/splash_cubit.dart';
 import 'package:roommate/main.dart';
 import 'package:roommate/models/home/room_model.dart';
 import 'package:roommate/models/room/type_model.dart';
@@ -74,17 +73,18 @@ class SearchDataCubit extends Cubit<RequestState>{
 
   Future searchRooms({required String title}) async {
     final homeCubit = navigatorKey.currentState!.context.read<HomeCubit>();
+    homeCubit.clearSearchResult();
     final List<RoomModel>rooms =[];
     homeCubit.emit(RequestLoading());
     await Future.delayed(const Duration(milliseconds: 300));
     homeCubit.rooms.forEach((element) {
-      if(element.title!.contains(title)){
+      if((element.title!).toLowerCase().contains(title.toLowerCase())){
         rooms.add(element);
       }
     });
     // final response = await searchRepo.searchRoom(title: title);
     if (rooms.isNotEmpty) {
-      navigatorKey.currentState!.context.read<HomeCubit>().emitRooms(response: rooms);
+      navigatorKey.currentState!.context.read<HomeCubit>().emitRooms(response: rooms,forSearch: true);
       emit(RequestLoaded(date:rooms));
     } else {
       navigatorKey.currentState!.context.read<HomeCubit>().emit(RequestError());

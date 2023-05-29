@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roommate/blocs/request_state.dart';
+import 'package:roommate/blocs/search/district_cubit.dart';
 import 'package:roommate/blocs/search/location_cubit.dart';
 import 'package:roommate/blocs/search/search_cubit.dart';
 import 'package:roommate/core/utils/enums/filter_type.dart';
@@ -11,51 +12,62 @@ class HomeCubit extends Cubit<RequestState> {
   HomeCubit({required this.homeRepo}) : super(RequestInit());
   final HomeRepo homeRepo;
   List<RoomModel> rooms = [];
+  List<RoomModel> searchedRooms = [];
+
   Future getRooms() async {
     emit(RequestLoading());
     final response = await homeRepo.getRooms();
     emitRooms(response: response);
   }
 
-  emitRooms({required List<RoomModel> response}){
+  emitRooms({required List<RoomModel> response, bool forSearch = false}) {
     if (response.isNotEmpty) {
-      rooms = response;
-      emit(RequestLoaded(date: response));
+      _generateEmittedRooms(response: response, forSearch: forSearch);
     } else {
       emit(RequestError());
     }
   }
 
+  void _generateEmittedRooms(
+      {required bool forSearch, required List<RoomModel> response}) {
+    if (forSearch) {
+      searchedRooms = response;
+    } else {
+      rooms = response;
+    }
+    emit(RequestLoaded(date: response));
+  }
+void clearSearchResult(){
+    searchedRooms.clear();
+}
   getFilteredItem() async {
     emit(RequestLoading());
     await Future.delayed(const Duration(milliseconds: 300));
     final searchCubit = navigatorKey.currentState!.context.read<SearchCubit>();
-    final locationCubit = navigatorKey.currentState!.context.read<LocationCubit>();
-    final List<RoomModel>rooms = [];
-    if(searchCubit.availableFilters.isNotEmpty) {
+    final locationCubit =
+        navigatorKey.currentState!.context.read<LocationCubit>();
+    final districtCubit =
+        navigatorKey.currentState!.context.read<DistrictCubit>();
+    final List<RoomModel> rooms = [];
+    if (searchCubit.availableFilters.isNotEmpty) {
       if (searchCubit.availableFilters.contains(FilterType.Price)) {
-        int index = searchCubit.priceWidgets.indexWhere((element) =>
-        element.isActivated == true);
-        final model = searchCubit.priceWidgets
-            .elementAt(index)
-            .sheetItemModel;
-        navigatorKey.currentState!
-            .context
+        int index = searchCubit.priceWidgets
+            .indexWhere((element) => element.isActivated == true);
+        final model = searchCubit.priceWidgets.elementAt(index).sheetItemModel;
+        navigatorKey.currentState!.context
             .read<HomeCubit>()
             .rooms
             .forEach((element) {
-          if (double.parse((element.price.toString())) >= model.min && double.parse((element.price.toString())) <= model.max) {
+          if (double.parse((element.price.toString())) >= model.min &&
+              double.parse((element.price.toString())) <= model.max) {
             rooms.add(element);
           }
         });
       } else if (searchCubit.availableFilters.contains(FilterType.Type)) {
-        int index = searchCubit.typeWidgets.indexWhere((element) =>
-        element.isActivated == true);
-        final model = searchCubit.typeWidgets
-            .elementAt(index)
-            .sheetItemModel;
-        navigatorKey.currentState!
-            .context
+        int index = searchCubit.typeWidgets
+            .indexWhere((element) => element.isActivated == true);
+        final model = searchCubit.typeWidgets.elementAt(index).sheetItemModel;
+        navigatorKey.currentState!.context
             .read<HomeCubit>()
             .rooms
             .forEach((element) {
@@ -64,22 +76,26 @@ class HomeCubit extends Cubit<RequestState> {
           }
         });
       } else {
-        int index = locationCubit.citiesWidgets.indexWhere((element) =>
-        element.isActivated == true);
-        final model = locationCubit.citiesWidgets
-            .elementAt(index)
-            .cityModel;
-        navigatorKey.currentState!
-            .context
+        int cityIndex = locationCubit.state
+            .indexWhere((element) => element.isActivated == true);
+        int districtIndex = districtCubit.state
+            .indexWhere((element) => element.isActivated == true);
+        final cityModel = locationCubit.state.elementAt(cityIndex).cityModel;
+        final districtModel =
+            districtCubit.state.elementAt(districtIndex).sheetItemModel;
+        navigatorKey.currentState!.context
             .read<HomeCubit>()
             .rooms
             .forEach((element) {
-          if (element.city == model.city) {
+          if (element.district?.toLowerCase().trim() ==
+                  cityModel.city?.toLowerCase().trim() ||
+              element.district?.toLowerCase().trim() ==
+                  districtModel.name?.toLowerCase().trim()) {
             rooms.add(element);
           }
         });
       }
     }
-    emitRooms(response: rooms);
+    emitRooms(response: rooms,forSearch: true);
   }
 }

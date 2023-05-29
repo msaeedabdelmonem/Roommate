@@ -1,9 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:roommate/core/navigation/navigation.dart';
-import 'package:roommate/main.dart';
-import 'package:roommate/models/room/type_model.dart';
 import 'package:roommate/models/search_location/city_model.dart';
-import 'package:roommate/ui/screens/search/widgets/city_widget.dart';
 import 'package:roommate/ui/screens/search/widgets/radio_btn.dart';
 
 class DistrictCubit extends Cubit<List<RadioBtn>> {
@@ -12,7 +8,7 @@ class DistrictCubit extends Cubit<List<RadioBtn>> {
 
   emitActivatedDistrictState(int index) {
     RadioBtn radioBtn = RadioBtn(
-      isActivated: true,
+      isActivated:  !state[index].isActivated,
       sheetItemModel: state[index].sheetItemModel,
     );
     state[index] = radioBtn;
