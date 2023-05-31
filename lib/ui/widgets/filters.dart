@@ -23,11 +23,11 @@ class Filters extends StatelessWidget {
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: List.generate(3, (index) {
-            FilterType filterType = FilterType.Price;
+            FilterType filterType = FilterType.Type;
             if (index == 1) {
               filterType = FilterType.Location;
             } else if (index == 2) {
-              filterType = FilterType.Type;
+              filterType = FilterType.Price;
             }
             return InkWell(
                 onTap: () =>

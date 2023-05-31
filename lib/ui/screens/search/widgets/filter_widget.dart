@@ -34,7 +34,7 @@ class FilterWidget extends StatelessWidget {
           space(15),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             CustomText(
-              text: filterType.title,
+              text: filterType.name,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: ConstantsColors.blackColor,
                     fontSize: AppFontSize.x_large,
@@ -102,8 +102,9 @@ class FilterWidget extends StatelessWidget {
   void _getFilteredDate(BuildContext context) {
     Navigation(navigatorKey: navigatorKey).goBack();
     final searchCubit = context.read<SearchCubit>();
-    searchCubit.generateFilters();
-    navigatorKey.currentState!.context.read<HomeCubit>().getFilteredItem();
+    if(searchCubit.checkFilters()) {
+      navigatorKey.currentState!.context.read<HomeCubit>().getFilteredItem();
+    }
   }
 
   void _onItemClick(BuildContext context, int index) {

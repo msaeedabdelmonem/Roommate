@@ -6,6 +6,7 @@ abstract class RoutesNames {
   static const String ratingScreen = 'ratingScreen';
   static const String roomImageScreen = 'roomImageScreen';
   static const String searchScreen = 'searchScreen';
+  static const String profileScreen = 'profileScreen';
 }
 
 abstract class MoreRoutes{

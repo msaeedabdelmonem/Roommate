@@ -24,6 +24,11 @@ abstract class ImagePaths {
   static const String price = "assets/icons/price.svg";
   static const String type = "assets/icons/type.svg";
   static const String location = "assets/icons/location.svg";
+  static const String profileImage = "assets/images/profile.svg";
 
+  static const String list = "assets/icons/list.svg";
+  static const String all = "assets/icons/all.svg";
+  static const String language = "assets/icons/language.svg";
+  static const String logout = "assets/icons/logout.svg";
 
 }

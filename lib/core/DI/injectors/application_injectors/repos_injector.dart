@@ -1,5 +1,6 @@
 import 'package:roommate/core/DI/dependency_injector.dart';
 import 'package:roommate/core/DI/injectors/base_injector.dart';
+import 'package:roommate/core/data_sources/local/shared_perference.dart';
 import 'package:roommate/repositories/auth_repo.dart';
 import 'package:roommate/repositories/home/home_repo.dart';
 import 'package:roommate/repositories/home/search_repo.dart';
@@ -8,7 +9,9 @@ import 'package:roommate/repositories/home/search_repo.dart';
 class ReposInjector extends BaseInjector {
   static final reposInjectors = [
     () => diInstance.registerLazySingleton<AuthRepo>(
-          () => AuthRepoImp(),
+          () => AuthRepoImp(
+            sharedPreferencesHelper: diInstance<SharedPreferencesHelper>(),
+          ),
         ),
         () => diInstance.registerLazySingleton<HomeRepo>(
           () => HomeRepoImp(),

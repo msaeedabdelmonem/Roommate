@@ -50,10 +50,10 @@ class AppLocalization {
     return Localizations.of<AppLocalization>(context, AppLocalization);
   }
 
-  /// `Roommate`
+  /// `Roomates`
   String get appName {
     return Intl.message(
-      'Roommate',
+      'Roomates',
       name: 'appName',
       desc: '',
       args: [],
@@ -175,6 +175,156 @@ class AppLocalization {
     return Intl.message(
       'I’m looking for',
       name: 'lookingFor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `List your room`
+  String get listRooms {
+    return Intl.message(
+      'List your room',
+      name: 'listRooms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Room preferences`
+  String get roomPref {
+    return Intl.message(
+      'Room preferences',
+      name: 'roomPref',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Coming Soon`
+  String get soon {
+    return Intl.message(
+      'Coming Soon',
+      name: 'soon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message(
+      'Language',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get langName {
+    return Intl.message(
+      'English',
+      name: 'langName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `App ver. {number}`
+  String version(Object number) {
+    return Intl.message(
+      'App ver. $number',
+      name: 'version',
+      desc: '',
+      args: [number],
+    );
+  }
+
+  /// `{number} Search results`
+  String searchResults(Object number) {
+    return Intl.message(
+      '$number Search results',
+      name: 'searchResults',
+      desc: '',
+      args: [number],
+    );
+  }
+
+  /// `Choose type`
+  String get chooseType {
+    return Intl.message(
+      'Choose type',
+      name: 'chooseType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose City & Area`
+  String get chooseLocation {
+    return Intl.message(
+      'Choose City & Area',
+      name: 'chooseLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose price range`
+  String get choosePrice {
+    return Intl.message(
+      'Choose price range',
+      name: 'choosePrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Entire apartment`
+  String get entireRoom {
+    return Intl.message(
+      'Entire apartment',
+      name: 'entireRoom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Signle room`
+  String get single {
+    return Intl.message(
+      'Signle room',
+      name: 'single',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Double room`
+  String get double {
+    return Intl.message(
+      'Double room',
+      name: 'double',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tribble room`
+  String get tribble {
+    return Intl.message(
+      'Tribble room',
+      name: 'tribble',
       desc: '',
       args: [],
     );

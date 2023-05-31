@@ -24,37 +24,47 @@ bool checkFilters(){
   bool isFilterLocationApplied = context.read<DistrictCubit>().districtWidgets.indexWhere((element) => element.isActivated==true)>-1;
   return  (isFilterTypeApplied||isFilterPriceApplied||isFilterLocationApplied);
 }
-generateFilters(){
-  bool isFilterTypeApplied = context.read<SearchCubit>().typeWidgets.indexWhere((element) => element.isActivated==true)>-1;
-  bool isFilterPriceApplied = context.read<SearchCubit>().priceWidgets.indexWhere((element) => element.isActivated==true)>-1;
+bool generateFilters(){
+  bool isFilterTypeApplied = typeWidgets.indexWhere((element) => element.isActivated==true)>-1;
+  bool isFilterPriceApplied = priceWidgets.indexWhere((element) => element.isActivated==true)>-1;
   bool isFilterLocationApplied = context.read<DistrictCubit>().districtWidgets.indexWhere((element) => element.isActivated==true)>-1;
   if(isFilterPriceApplied){
+    availableFilters.remove(FilterType.Price);
     availableFilters.add(FilterType.Price);
   }
   if(isFilterLocationApplied){
+    availableFilters.remove(FilterType.Location);
     availableFilters.add(FilterType.Location);
 
   }
   if(isFilterTypeApplied){
+    availableFilters.remove(FilterType.Type);
     availableFilters.add(FilterType.Type);
   }
+  if(isFilterPriceApplied||isFilterLocationApplied||isFilterTypeApplied){
+    return true;
+  }
+  return false;
+}
+void resetFilters(){
+  typeWidgets.clear();
+  priceWidgets.clear();
+  context.read<DistrictCubit>().districtWidgets.clear();
 }
   emitActivatedState(int index) {
     RadioBtn radioBtn = RadioBtn(
-      isActivated: true,
+      isActivated: !state[index].isActivated,
       sheetItemModel: state[index].sheetItemModel,
     );
-    radioBtn.isActivated = true;
     state[index] = radioBtn;
     for (int counter = 0; counter < state.length; counter++) {
       if (counter == index) {
         continue;
       }
       RadioBtn btn = RadioBtn(
-        isActivated: true,
+        isActivated: false,
         sheetItemModel: state[counter].sheetItemModel,
       );
-      btn.isActivated = false;
       state[counter] = btn;
     }
 

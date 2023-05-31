@@ -1,10 +1,25 @@
+import 'package:roommate/blocs/localization/localization.dart';
+import 'package:roommate/main.dart';
+
 enum FilterType {
-  Type(2, 'Choose type'),
-  Location(1, 'Choose City & Area'),
-  Price(0, 'Choose price range');
+  Type(0),
+  Location(1),
+  Price(2);
 
   final int id;
-  final String title;
 
-  const FilterType(this.id, this.title);
+  const FilterType(this.id);
+}
+
+extension FilterName on FilterType {
+  String get name {
+    switch (this) {
+      case FilterType.Type:
+        return navigatorKey.currentState!.context.localization.chooseType;
+      case FilterType.Location:
+        return navigatorKey.currentState!.context.localization.chooseLocation;
+      case FilterType.Price:
+        return navigatorKey.currentState!.context.localization.choosePrice;
+    }
+  }
 }

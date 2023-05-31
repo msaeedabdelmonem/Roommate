@@ -17,9 +17,9 @@ class LoginCubit extends Cubit<AuthState> {
 
   Future<void> signInWithGoogle() async {
     Loading.showLoading();
-    await authRepo.signInWithGoogle(onSuccess: (token) async {
+    await authRepo.signInWithGoogle(onSuccess: (token,profileModel) async {
       await sharedPreferencesHelper.saveToken(token);
-
+      await sharedPreferencesHelper.saveUserData(profileModel);
       authCubit.emitAuthorizedState();
       Loading.dismissLoading();
     }, onFail: () {
@@ -29,9 +29,9 @@ class LoginCubit extends Cubit<AuthState> {
 
   Future<void> signInWithFaceBook() async {
     Loading.showLoading();
-    await authRepo.signInWithFacebook(onSuccess: (token) async {
+    await authRepo.signInWithFacebook(onSuccess: (token,profileModel) async {
       await sharedPreferencesHelper.saveToken(token);
-
+      await sharedPreferencesHelper.saveUserData(profileModel);
       authCubit.emitAuthorizedState();
       Loading.dismissLoading();
     }, onFail: () {

@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "appName": "Roommate",
+  "appName": "Roomates",
   "loginTitle": "Rooms For Rent & Roommate Finder",
   "loginDesc": "Browse hundreds of profiles, search and contact potential roommates for free.",
   "facebook_login": "Continue with Facebook",
@@ -12,5 +12,20 @@
   "price": "Price",
   "location": "Location",
   "type": "Type",
-  "lookingFor": "I’m looking for"
+  "lookingFor": "I’m looking for",
+  "listRooms": "List your room",
+  "roomPref": "Room preferences",
+  "soon": "Coming Soon",
+  "language": "Language",
+  "langName": "English",
+  "logout": "Logout",
+  "version": "App ver. {number}",
+  "searchResults": "{number} Search results",
+  "chooseType": "Choose type",
+  "chooseLocation": "Choose City & Area",
+  "choosePrice": "Choose price range",
+  "entireRoom": "Entire apartment",
+  "single": "Signle room",
+  "double": "Double room",
+  "tribble": "Tribble room"
 }

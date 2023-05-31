@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get_it/get_it.dart';
+import 'package:roommate/blocs/localization/localization_cubit.dart';
+import 'package:roommate/blocs/search/location_cubit.dart';
 import 'package:roommate/core/DI/injectors/injector_holder.dart';
 import 'package:roommate/core/data_sources/local/shared_perference.dart';
 import 'package:roommate/core/theme/colors/config_colors.dart';
@@ -34,6 +36,7 @@ class DependencyInjector {
     await GetIt.I.getAsync<SharedPreferencesHelper>();
     GetIt.I.registerLazySingleton<DynamicLink>(
             () => DynamicLink());
+   LocalizationCubit.storedLanguageCode = await diInstance<SharedPreferencesHelper>().getLanguageCode();
     /// Injects all modules in app
     InjectorHolder.injectAllApplicationModules();
   }

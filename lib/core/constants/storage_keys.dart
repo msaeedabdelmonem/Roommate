@@ -4,4 +4,6 @@
 
 abstract class SharedPrefsConstants {
   static const token = 'token';
+  static const userData = 'userData';
+  static const languageCode = 'languageCode';
 }

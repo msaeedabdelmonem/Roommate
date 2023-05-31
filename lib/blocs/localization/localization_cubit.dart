@@ -22,7 +22,7 @@ class LocalizationCubit extends Cubit<Locale> {
 
   /// Arabic Supported Locale
   static const Locale localeEn = Locale('en');
-
+  static String? storedLanguageCode;
   /// Contains all our localizationDelegates
   final List<LocalizationsDelegate> localizationDelegates = [
     AppLocalization.delegate,
@@ -45,14 +45,15 @@ class LocalizationCubit extends Cubit<Locale> {
 
   /// Returns the current locale if it's  [_isLocaleSupported]
   /// otherwise it returns the apps default locale [_defaultLocale]
-  static Locale get initialLocale {
-    Locale locale = getCurrentLocale();
+  static Locale get initialLocale  {
+    Locale locale =  getCurrentLocale();
     return _isLocaleSupported(locale) ? locale : _defaultLocale;
   }
 
   /// Returns current locale without the CountryCode
-  static Locale getCurrentLocale() {
-    String languageCode = ui.window.locale.languageCode;
+  static Locale getCurrentLocale()  {
+    String? code = storedLanguageCode;
+    String languageCode = code??ui.window.locale.languageCode;
     return Locale(languageCode);
   }
 
@@ -68,8 +69,19 @@ class LocalizationCubit extends Cubit<Locale> {
     bool shouldUpdateLanguageInServer = false,
   }) {
     if (supportedLocales.contains(locale)) {
-      //todo update language using shared preferences
+      sharedPrefsClient.saveLanguage(locale.languageCode);
       emit(locale);
+    }
+  }
+
+  /// Update Language
+  void updateLanguage({bool shouldUpdateLanguageInServer = false}) {
+    if (state.languageCode == 'en') {
+      updateLocale(const Locale('en'),
+          shouldUpdateLanguageInServer: shouldUpdateLanguageInServer);
+    } else {
+      updateLocale(const Locale('ar'),
+          shouldUpdateLanguageInServer: shouldUpdateLanguageInServer);
     }
   }
 

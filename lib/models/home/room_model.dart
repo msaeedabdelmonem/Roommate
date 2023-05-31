@@ -9,7 +9,7 @@ String roomModelToJson(RoomModel data) => json.encode(data.toJson());
 class RoomModel {
   String? id;
   String? city;
-  String? type;
+  dynamic type;
   List<String>? images;
   String? title;
   dynamic price;

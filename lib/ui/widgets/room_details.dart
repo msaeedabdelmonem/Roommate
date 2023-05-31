@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roommate/blocs/localization/localization.dart';
 import 'package:roommate/core/constants/app_font_size.dart';
 import 'package:roommate/core/theme/colors/config_colors.dart';
 import 'package:roommate/models/home/room_model.dart';
@@ -47,7 +48,7 @@ class RoomDetailsWidget extends StatelessWidget {
             text: TextSpan(
               children: <TextSpan>[
                 TextSpan(
-                  text: roomModel.type,
+                  text: _renderType(type: roomModel.type,context: context),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontSize: AppFontSize.smallMedium,
                         color: roomTypeColor ?? ConstantsColors.blackColor,
@@ -106,5 +107,16 @@ class RoomDetailsWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+  String _renderType({required int type,required BuildContext context}){
+    if(type == 0){
+      return context.localization.entireRoom;
+    }else if(type == 1){
+      return context.localization.single;
+    }else if(type == 2){
+      return context.localization.double;
+    }else{
+      return context.localization.tribble;
+    }
   }
 }

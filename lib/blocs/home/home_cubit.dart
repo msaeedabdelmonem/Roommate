@@ -16,6 +16,7 @@ class HomeCubit extends Cubit<RequestState> {
 
   Future getRooms() async {
     emit(RequestLoading());
+    // navigatorKey.currentState!.context.read<SearchCubit>().resetFilters();
     final response = await homeRepo.getRooms();
     emitRooms(response: response);
   }
@@ -49,8 +50,7 @@ void clearSearchResult(){
     final districtCubit =
         navigatorKey.currentState!.context.read<DistrictCubit>();
     final List<RoomModel> rooms = [];
-    if (searchCubit.availableFilters.isNotEmpty) {
-      if (searchCubit.availableFilters.contains(FilterType.Price)) {
+     if (searchCubit.priceWidgets.indexWhere((element) => element.isActivated==true)>-1) {
         int index = searchCubit.priceWidgets
             .indexWhere((element) => element.isActivated == true);
         final model = searchCubit.priceWidgets.elementAt(index).sheetItemModel;
@@ -63,7 +63,7 @@ void clearSearchResult(){
             rooms.add(element);
           }
         });
-      } else if (searchCubit.availableFilters.contains(FilterType.Type)) {
+      } else if (searchCubit.typeWidgets.indexWhere((element) => element.isActivated==true)>-1) {
         int index = searchCubit.typeWidgets
             .indexWhere((element) => element.isActivated == true);
         final model = searchCubit.typeWidgets.elementAt(index).sheetItemModel;
@@ -75,7 +75,7 @@ void clearSearchResult(){
             rooms.add(element);
           }
         });
-      } else {
+      } else if(districtCubit.districtWidgets.indexWhere((element) => element.isActivated==true)>-1) {
         int cityIndex = locationCubit.state
             .indexWhere((element) => element.isActivated == true);
         int districtIndex = districtCubit.state
@@ -95,7 +95,7 @@ void clearSearchResult(){
           }
         });
       }
-    }
+
     emitRooms(response: rooms,forSearch: true);
   }
 }
