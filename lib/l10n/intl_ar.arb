@@ -36,5 +36,6 @@
   "share": "تمت دعوتك لحجز هذه الغرفة {room}",
   "inWord": " في ",
   "perMonth": "/ شهر",
-  "description": "الوصف"
+  "description": "الوصف",
+  "noData": "لا توجد غرف حاليا"
 }

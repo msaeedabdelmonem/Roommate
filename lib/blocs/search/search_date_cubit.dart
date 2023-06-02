@@ -4,6 +4,7 @@ import 'package:roommate/blocs/request_state.dart';
 import 'package:roommate/blocs/search/location_cubit.dart';
 import 'package:roommate/blocs/search/search_cubit.dart';
 import 'package:roommate/blocs/search/search_field_cubit.dart';
+import 'package:roommate/core/utils/enums/filter_type.dart';
 import 'package:roommate/main.dart';
 import 'package:roommate/models/home/room_model.dart';
 import 'package:roommate/models/room/type_model.dart';
@@ -16,6 +17,7 @@ class SearchDataCubit extends Cubit<RequestState>{
   SearchDataCubit({required this.searchRepo}) : super(RequestInit());
   List<SheetItemModel> prices = [];
   List<SheetItemModel> types = [];
+  List<bool> activeList = [false,false,false];
   List<CityModel> cities = [
     // CityModel(city: 'cairo', districts: [
     //   SheetItemModel(id: '1', name: 'Nasr city'),

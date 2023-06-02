@@ -36,5 +36,6 @@
   "share": "You are invited to book this room {room}",
   "inWord": " in ",
   "perMonth": "per month",
-  "description": "Description"
+  "description": "Description",
+  "noData": "No available rooms yet"
 }

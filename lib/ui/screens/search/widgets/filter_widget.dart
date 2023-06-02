@@ -104,6 +104,9 @@ class FilterWidget extends StatelessWidget {
     final searchCubit = context.read<SearchCubit>();
     if(searchCubit.checkFilters()) {
       navigatorKey.currentState!.context.read<HomeCubit>().getFilteredItem();
+    }else{
+      context.read<SearchDataCubit>().activeList[filterType.id] = false;
+      navigatorKey.currentState!.context.read<HomeCubit>().getRooms();
     }
   }
 

@@ -1,8 +1,11 @@
+
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roommate/blocs/request_state.dart';
 import 'package:roommate/blocs/search/district_cubit.dart';
 import 'package:roommate/blocs/search/location_cubit.dart';
 import 'package:roommate/blocs/search/search_cubit.dart';
+import 'package:roommate/blocs/search/search_date_cubit.dart';
 import 'package:roommate/core/utils/enums/filter_type.dart';
 import 'package:roommate/main.dart';
 import 'package:roommate/models/home/room_model.dart';
@@ -89,24 +92,32 @@ class HomeCubit extends Cubit<RequestState> {
       int districtIndex = districtCubit.state
           .indexWhere((element) => element.isActivated == true);
       final cityModel = locationCubit.state.elementAt(cityIndex).cityModel;
-      final districtModel =
-          districtCubit.state.elementAt(districtIndex).sheetItemModel;
-      navigatorKey.currentState!.context
-          .read<HomeCubit>()
-          .rooms
-          .forEach((element) {
-        bool ckeckDistrict = element.district?.toLowerCase().trim() ==
-                cityModel.city?.toLowerCase().trim() ||
-            element.district?.toLowerCase().trim() ==
-                districtModel.name?.toLowerCase().trim() ||
-            element.districtAr?.toLowerCase().trim() ==
-                cityModel.cityAr?.toLowerCase().trim() ||
-            element.districtAr?.toLowerCase().trim() ==
-                districtModel.nameAr?.toLowerCase().trim();
-        if (ckeckDistrict) {
-          rooms.add(element);
-        }
-      });
+      if(districtIndex>-1) {
+        final districtModel =
+            districtCubit.state
+                .elementAt(districtIndex)
+                .sheetItemModel;
+        navigatorKey.currentState!
+            .context
+            .read<HomeCubit>()
+            .rooms
+            .forEach((element) {
+          bool ckeckDistrict = element.district?.toLowerCase().trim() ==
+              cityModel.city?.toLowerCase().trim() ||
+              element.district?.toLowerCase().trim() ==
+                  districtModel.name?.toLowerCase().trim() ||
+              element.districtAr?.toLowerCase().trim() ==
+                  cityModel.cityAr?.toLowerCase().trim() ||
+              element.districtAr?.toLowerCase().trim() ==
+                  districtModel.nameAr?.toLowerCase().trim();
+          if (ckeckDistrict) {
+            rooms.add(element);
+          }
+        });
+      }else{
+        locationCubit.citiesWidgets[cityIndex].isActivated = false;
+        getRooms();
+      }
     }
 
     emitRooms(response: rooms, forSearch: true);

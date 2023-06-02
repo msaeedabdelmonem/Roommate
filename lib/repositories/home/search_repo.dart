@@ -29,7 +29,7 @@ class SearchRepoImp implements SearchRepo {
   @override
   Future<List<SheetItemModel>> getPrices() async {
     List<SheetItemModel> models = [];
-    await FirebaseFirestore.instance.collection("prices").get().then((value) {
+    await FirebaseFirestore.instance.collection("prices").orderBy("type", descending: false).get().then((value) {
       if (value.docs.isNotEmpty) {
         value.docs.forEach((element) {
           models.add(SheetItemModel.fromJson(element.data()));

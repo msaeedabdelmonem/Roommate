@@ -15,29 +15,32 @@ class Filters extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      BlocBuilder<SearchDataCubit, RequestState>(builder: (context, state) {
-        return
-      Padding(
-      padding:  EdgeInsets.symmetric(vertical: 10.0.h),
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: List.generate(3, (index) {
-            FilterType filterType = FilterType.Type;
-            if (index == 1) {
-              filterType = FilterType.Location;
-            } else if (index == 2) {
-              filterType = FilterType.Price;
-            }
-            return InkWell(
-                onTap: () =>
-                    _onFilterClick(context: context, filterType: filterType),
-                child: SheetRenderedItem(
-                  filterIndex: index,
-                ));
-          })),
-    );});
+    return BlocBuilder<SearchDataCubit, RequestState>(
+        builder: (context, state) {
+      return Padding(
+        padding: EdgeInsets.symmetric(vertical: 10.0.h),
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: List.generate(3, (index) {
+              FilterType filterType = FilterType.Type;
+              if (index == 1) {
+                filterType = FilterType.Location;
+              } else if (index == 2) {
+                filterType = FilterType.Price;
+              }
+
+              return InkWell(
+                  onTap: () {
+                    _onFilterClick(context: context, filterType: filterType);
+                  },
+                  child: SheetRenderedItem(
+                    filterIndex: index,
+                  ));
+            })),
+      );
+    });
   }
+
   void _onFilterClick(
       {required FilterType filterType, required BuildContext context}) {
     if (filterType == FilterType.Location) {

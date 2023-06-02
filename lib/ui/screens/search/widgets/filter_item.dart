@@ -10,10 +10,13 @@ import 'package:roommate/ui/widgets/custom_widgets.dart';
 class FilterItem extends StatelessWidget {
   const FilterItem({
     Key? key,
-    required this.name, required this.imagePath,
+    required this.name,
+    required this.imagePath,
+    this.isActive = false,
   }) : super(key: key);
   final String name;
   final String imagePath;
+  final bool isActive;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,10 @@ class FilterItem extends StatelessWidget {
           borderRadius: BorderRadius.all(
             Radius.circular(8.r),
           ),
-          border: Border.all(color: ConstantsColors.lightGreyColor),
+          border: Border.all(
+              color: isActive
+                  ? ConstantsColors.blackColor
+                  : ConstantsColors.lightGreyColor),
         ),
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           SvgPicture.asset(

@@ -15,13 +15,15 @@ class SheetItemModel {
   String? nameAr;
   dynamic min;
   dynamic max;
+  bool isActive;
   SheetItemModel({
     this.id,
     this.type,
     this.name,
     this.max,
     this.min,
-    this.nameAr
+    this.nameAr,
+    this.isActive=false
   });
 
   factory SheetItemModel.fromJson(Map<String, dynamic> json) => SheetItemModel(

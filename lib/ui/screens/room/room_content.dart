@@ -47,6 +47,7 @@ class RoomContent extends StatelessWidget {
                         height: 300.h,
                         enlargeCenterPage: true,
                         aspectRatio: 2.0,
+                        autoPlay: true,
                         enableInfiniteScroll: false),
                   ),
                 ),

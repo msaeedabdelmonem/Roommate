@@ -20,9 +20,19 @@ class SearchCubit extends Cubit<List<RadioBtn>> {
   BuildContext context = navigatorKey.currentState!.context;
 bool checkFilters(){
   bool isFilterTypeApplied = typeWidgets.indexWhere((element) => element.isActivated==true)>-1;
+  activateFilter(FilterType.Type.id,isFilterTypeApplied);
   bool isFilterPriceApplied = priceWidgets.indexWhere((element) => element.isActivated==true)>-1;
+  activateFilter(FilterType.Price.id,isFilterPriceApplied);
   bool isFilterLocationApplied = context.read<DistrictCubit>().districtWidgets.indexWhere((element) => element.isActivated==true)>-1;
+  activateFilter(FilterType.Location.id,isFilterLocationApplied);
   return  (isFilterTypeApplied||isFilterPriceApplied||isFilterLocationApplied);
+}
+void activateFilter(int index, bool isApplied){
+  if(isApplied){
+    context.read<SearchDataCubit>().activeList[index] = true;
+  }else{
+    context.read<SearchDataCubit>().activeList[index] = false;
+  }
 }
 bool generateFilters(){
   bool isFilterTypeApplied = typeWidgets.indexWhere((element) => element.isActivated==true)>-1;

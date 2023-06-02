@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roommate/core/constants/app_font_size.dart';
 import 'package:roommate/core/theme/colors/config_colors.dart';
 import 'package:roommate/ui/widgets/custom_text.dart';
+import 'package:roommate/blocs/localization/localization.dart';
 
 class NoDataWidget extends StatelessWidget {
   const NoDataWidget({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class NoDataWidget extends StatelessWidget {
         height: 1.sh,
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           CustomText(
-            text: 'No available rooms yet',
+            text: context.localization.noData,
             alignment: AlignmentDirectional.center,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: ConstantsColors.blackColor,

@@ -17,7 +17,8 @@ import 'package:roommate/main.dart';
 import 'package:roommate/ui/widgets/custom_text_form_field.dart';
 
 class SearchWidget extends HookWidget {
-  const SearchWidget({required this.onBack,
+  const SearchWidget({
+    required this.onBack,
     Key? key,
     this.enabledBorder = true,
     this.enabled = true,
@@ -29,10 +30,16 @@ class SearchWidget extends HookWidget {
   final bool isSearchApplied;
   final GlobalKey<FormState>? formKey;
   final Function onBack;
+
   @override
   Widget build(BuildContext context) {
-    final node= useFocusNode();
-    node.requestFocus();
+    final hasText = useState(false);
+    final node = useFocusNode();
+    if(!hasText.value) {
+      node.requestFocus();
+    }
+
+
     final TextEditingController controller = useTextEditingController();
     return InkWell(
       onTap: () {
@@ -46,26 +53,45 @@ class SearchWidget extends HookWidget {
         child: CustomTextFormField(
           focusNode: node,
           controller: controller,
-          onComplete: () => onSearch(context, controller),
+          onComplete: () => onSearch(context, controller, node),
           textHeight: 1.2,
           enabledBorder: enabledBorder,
           labelColor: ConstantsColors.blackColor,
+          onChanged: (value) {
+            hasText.value = true;
+          },
           prefixIcon: Padding(
-            padding: EdgeInsetsDirectional.only(
-                top: 8.h, start: 15.w, end: 10.w, bottom: 10.h),
-            child: InkWell(
-              onTap: () =>onBack(),
-                  child: Icon(
-                      Icons.arrow_back,
-                      color: ConstantsColors.blackColor,
+              padding: EdgeInsetsDirectional.only(
+                  top: 8.h, start: 15.w, end: 10.w, bottom: 10.h),
+              child: InkWell(
+                onTap: () => onBack(),
+                child: Icon(
+                  Icons.arrow_back,
+                  color: ConstantsColors.blackColor,
+                  size: 25,
+                ),
+              )),
+          suffixIcon: hasText.value
+              ? Padding(
+                  padding: EdgeInsetsDirectional.only(
+                      top: 8.h, start: 15.w, end: 10.w, bottom: 10.h),
+                  child: InkWell(
+                    onTap: () {
+                      hasText.value = false;
+                      controller.clear();
+                    },
+                    child: Icon(
+                      Icons.close,
+                      color: ConstantsColors.greyColor,
                       size: 25,
                     ),
-                )
-          ),
+                  ))
+              : SizedBox(),
           radius: 16.r,
           hintText: context.localization.search,
           maxLength: 200,
-          enabled: enabled,fontWeight: FontWeight.w700,
+          enabled: enabled,
+          fontWeight: FontWeight.w700,
           textFontSize: AppFontSize.medium,
           validator: (value) => Validator.requiredValidator(
               value: value, key: context.localization.search),
@@ -74,12 +100,12 @@ class SearchWidget extends HookWidget {
     );
   }
 
-  void onSearch(BuildContext context, TextEditingController controller) {
+  void onSearch(
+      BuildContext context, TextEditingController controller, FocusNode node) {
     formKey!.currentState!.save();
-    if (controller.text.isNotEmpty && controller.text.length >= 3&&enabled) {
-
+    if (controller.text.isNotEmpty && controller.text.length >= 3 && enabled) {
+      node.unfocus();
       context.read<SearchDataCubit>().searchRooms(title: controller.text);
-
     }
   }
 }
