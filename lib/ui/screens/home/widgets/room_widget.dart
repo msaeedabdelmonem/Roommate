@@ -52,14 +52,14 @@ class RoomImages extends StatelessWidget {
       imageUrl: image,
       width: 1.sw,
       height: 190.h,
-      fit: BoxFit.fitWidth,
+      fit: BoxFit.fill,
       useOldImageOnUrlChange: true,
       imageBuilder: (context, imageProvider) => Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.r),
           image: DecorationImage(
             image: imageProvider,
-            fit: BoxFit.fitWidth,
+            fit: BoxFit.fill,
           ),
         ),
       ),
