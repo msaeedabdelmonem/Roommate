@@ -15,7 +15,7 @@ class NoDataWidget extends StatelessWidget {
         height: 1.sh,
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           CustomText(
-            text: 'No available rooms yet please pull to refresh',
+            text: 'No available rooms yet',
             alignment: AlignmentDirectional.center,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: ConstantsColors.blackColor,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roommate/blocs/localization/localization.dart';
+import 'package:roommate/blocs/localization/localization_cubit.dart';
 import 'package:roommate/core/constants/app_font_size.dart';
 import 'package:roommate/core/theme/colors/config_colors.dart';
 import 'package:roommate/models/home/room_model.dart';
@@ -17,7 +19,7 @@ class RoomDetailsWidget extends StatelessWidget {
       this.backgroundColor = ConstantsColors.transparent,
       this.height,
       this.radius = 0,
-        this.spaceHeight =6,
+      this.spaceHeight = 6,
       this.padding})
       : super(key: key);
   final RoomModel roomModel;
@@ -29,6 +31,7 @@ class RoomDetailsWidget extends StatelessWidget {
   final double radius;
   final EdgeInsetsGeometry? padding;
   final double spaceHeight;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,23 +51,25 @@ class RoomDetailsWidget extends StatelessWidget {
             text: TextSpan(
               children: <TextSpan>[
                 TextSpan(
-                  text: _renderType(type: roomModel.type,context: context),
+                  text: _renderType(type: roomModel.type, context: context),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontSize: AppFontSize.smallMedium,
+                        fontWeight: FontWeight.w700,
                         color: roomTypeColor ?? ConstantsColors.blackColor,
                       ),
                 ),
                 TextSpan(
-                  text: ' in ',
+                  text: context.localization.inWord,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontSize: AppFontSize.smallMedium,
                         color: roomTypeColor ?? ConstantsColors.greyColor,
                       ),
                 ),
                 TextSpan(
-                  text: roomModel.city,
+                  text: _renderDistrict(context: context),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontSize: AppFontSize.smallMedium,
+                        fontWeight: FontWeight.w700,
                         color: roomTypeColor ?? ConstantsColors.blue,
                       ),
                 )
@@ -73,12 +78,12 @@ class RoomDetailsWidget extends StatelessWidget {
           ),
           space(spaceHeight),
           CustomText(
-            text: roomModel.title ?? '',
+            text: _renderTitle(context: context)??'',
             maxLines: 2,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: roomTitleColor ?? ConstantsColors.blackColor,
-                  fontWeight: FontWeight.w500,
-                  fontSize: AppFontSize.x_medium,
+                  fontWeight: FontWeight.w700,
+                  fontSize: AppFontSize.x_large,
                 ),
           ),
           space(spaceHeight),
@@ -89,15 +94,16 @@ class RoomDetailsWidget extends StatelessWidget {
                 TextSpan(
                   text: '${roomModel.price} EGP ',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontSize: AppFontSize.x_large,
-                        fontWeight: FontWeight.w700,
+                        fontSize: AppFontSize.x_medium,
+                        fontWeight: FontWeight.w600,
                         color: roomPriceColor ?? ConstantsColors.blackColor,
                       ),
                 ),
                 TextSpan(
-                  text: 'per month',
+                  text: context.localization.perMonth,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontSize: AppFontSize.smallMedium,
+                        fontWeight: FontWeight.w400,
                         color: ConstantsColors.greyColor,
                       ),
                 ),
@@ -108,15 +114,30 @@ class RoomDetailsWidget extends StatelessWidget {
       ),
     );
   }
-  String _renderType({required int type,required BuildContext context}){
-    if(type == 0){
+
+  String _renderType({required int type, required BuildContext context}) {
+    if (type == 0) {
       return context.localization.entireRoom;
-    }else if(type == 1){
+    } else if (type == 1) {
       return context.localization.single;
-    }else if(type == 2){
+    } else if (type == 2) {
       return context.localization.double;
-    }else{
+    } else {
       return context.localization.tribble;
+    }
+  }
+  String? _renderDistrict({required BuildContext context}){
+    if(context.read<LocalizationCubit>().state.languageCode=='en'){
+      return roomModel.district;
+    }else{
+      return roomModel.districtAr;
+    }
+  }
+  String? _renderTitle({required BuildContext context}){
+    if(context.read<LocalizationCubit>().state.languageCode=='en'){
+      return roomModel.title;
+    }else{
+      return roomModel.titleAr;
     }
   }
 }

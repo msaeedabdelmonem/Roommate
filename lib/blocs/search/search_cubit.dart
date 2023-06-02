@@ -19,8 +19,8 @@ class SearchCubit extends Cubit<List<RadioBtn>> {
   List<FilterType> availableFilters =[];
   BuildContext context = navigatorKey.currentState!.context;
 bool checkFilters(){
-  bool isFilterTypeApplied = context.read<SearchCubit>().typeWidgets.indexWhere((element) => element.isActivated==true)>-1;
-  bool isFilterPriceApplied = context.read<SearchCubit>().priceWidgets.indexWhere((element) => element.isActivated==true)>-1;
+  bool isFilterTypeApplied = typeWidgets.indexWhere((element) => element.isActivated==true)>-1;
+  bool isFilterPriceApplied = priceWidgets.indexWhere((element) => element.isActivated==true)>-1;
   bool isFilterLocationApplied = context.read<DistrictCubit>().districtWidgets.indexWhere((element) => element.isActivated==true)>-1;
   return  (isFilterTypeApplied||isFilterPriceApplied||isFilterLocationApplied);
 }
@@ -51,7 +51,7 @@ void resetFilters(){
   priceWidgets.clear();
   context.read<DistrictCubit>().districtWidgets.clear();
 }
-  emitActivatedState(int index) {
+  List<RadioBtn> emitActivatedState(int index) {
     RadioBtn radioBtn = RadioBtn(
       isActivated: !state[index].isActivated,
       sheetItemModel: state[index].sheetItemModel,
@@ -69,6 +69,7 @@ void resetFilters(){
     }
 
     emit([...state]);
+    return state;
   }
 
   void emitPricesInitialList() {

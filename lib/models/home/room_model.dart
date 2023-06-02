@@ -17,18 +17,25 @@ class RoomModel {
   Contacts? contacts;
   String? path;
   String? district;
+  String? descAr;
+  String? titleAr;
+  String? districtAr;
 
-  RoomModel(
-      {this.id,
-      this.city,
-      this.type,
-      this.images,
-      this.title,
-      this.price,
-      this.desc,
-      this.contacts,
-      this.path,
-      this.district});
+  RoomModel({
+    this.id,
+    this.city,
+    this.type,
+    this.images,
+    this.title,
+    this.price,
+    this.desc,
+    this.contacts,
+    this.path,
+    this.district,
+    this.titleAr,
+    this.descAr,
+    this.districtAr,
+  });
 
   factory RoomModel.fromJson(Map<String, dynamic> json) => RoomModel(
       id: json["id"],
@@ -40,6 +47,9 @@ class RoomModel {
       title: json["title"],
       price: json["price"],
       desc: json["desc"],
+      titleAr: json["title_ar"],
+      descAr: json["desc_ar"],
+      districtAr: json["district_ar"],
       contacts:
           json["contacts"] == null ? null : Contacts.fromJson(json["contacts"]),
       path: json["path"],
@@ -57,6 +67,9 @@ class RoomModel {
         "contacts": contacts?.toJson(),
         "path": RoutesNames.room,
         "district": district,
+        "district_ar": districtAr,
+        "title_ar": titleAr,
+        "desc_ar": descAr,
       };
 }
 

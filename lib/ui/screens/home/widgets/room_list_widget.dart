@@ -4,6 +4,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roommate/blocs/home/home_cubit.dart';
 import 'package:roommate/blocs/request_state.dart';
+import 'package:roommate/blocs/search/district_cubit.dart';
+import 'package:roommate/blocs/search/search_cubit.dart';
 import 'package:roommate/core/constants/app_font_size.dart';
 import 'package:roommate/core/constants/image_paths.dart';
 import 'package:roommate/core/theme/colors/config_colors.dart';
@@ -14,20 +16,20 @@ import 'package:roommate/ui/widgets/custom_text.dart';
 import 'package:roommate/ui/widgets/custom_widgets.dart';
 import 'package:roommate/ui/widgets/no_data_widget.dart';
 
-class RoomListWidget extends StatelessWidget {
+class RoomListWidget<T extends Cubit<RequestState>> extends StatelessWidget {
   const RoomListWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
         onRefresh: () {
-          context.read<HomeCubit>().getRooms();
+          _onRefresh(context: context);
           return Future<bool>.value(false);
         },
         child: SizedBox(
             height: 1.sh,
             child:
-                BlocBuilder<HomeCubit, RequestState>(builder: (context, state) {
+                BlocBuilder<T, RequestState>(builder: (context, state) {
               if (state is RequestLoaded) {
                 Loading.dismissLoading();
                 return ListView.separated(
@@ -44,10 +46,25 @@ class RoomListWidget extends StatelessWidget {
                 Loading.dismissLoading();
                 return NoDataWidget();
               }
-              {
-                Loading.showLoading();
+             else {
+               if(T is HomeCubit) {
+                 Loading.showLoading();
+               }
                 return SizedBox();
               }
             })));
+  }
+  void _onRefresh({required BuildContext context}){
+    if(!(T is HomeCubit)) {
+      context.read<HomeCubit>().clearSearchResult();
+      context.read<HomeCubit>().getRooms();
+      context.read<SearchCubit>().generateFilterWidgets();
+      context
+          .read<DistrictCubit>()
+          .districtWidgets
+          .forEach((element) {
+        element.isActivated = false;
+      });
+    }
   }
 }

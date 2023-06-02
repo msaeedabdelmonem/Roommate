@@ -31,7 +31,7 @@ class FilterWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          space(15),
+          space(32),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             CustomText(
               text: filterType.name,
@@ -52,7 +52,7 @@ class FilterWidget extends StatelessWidget {
               ),
             )
           ]),
-          space(20),
+          space(31),
           Visibility(
             visible: filterType != FilterType.Location,
             child:
@@ -109,7 +109,7 @@ class FilterWidget extends StatelessWidget {
 
   void _onItemClick(BuildContext context, int index) {
     if (filterType == FilterType.Type) {
-      context.read<SearchCubit>().emitActivatedState(index);
+      context.read<SearchCubit>().typeWidgets=  context.read<SearchCubit>().emitActivatedState(index);
     } else if (filterType == FilterType.Location) {
       context.read<DistrictCubit>().generateDistricts(navigatorKey
           .currentState!.context
@@ -117,7 +117,7 @@ class FilterWidget extends StatelessWidget {
           .cities[index]);
       context.read<LocationCubit>().emitActivatedCityState(index);
     } else {
-      context.read<SearchCubit>().emitActivatedState(index);
+      context.read<SearchCubit>().priceWidgets =   context.read<SearchCubit>().emitActivatedState(index);
     }
   }
 }

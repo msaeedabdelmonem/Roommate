@@ -1,6 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roommate/blocs/localization/localization.dart';
+import 'package:roommate/blocs/localization/localization_cubit.dart';
 import 'package:roommate/core/constants/app_font_size.dart';
 import 'package:roommate/core/constants/routes.dart';
 import 'package:roommate/core/navigation/navigation.dart';
@@ -67,7 +70,7 @@ class RoomContent extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
                   child: CustomText(
-                    text: 'Description',
+                    text: context.localization.description,
                     style: Theme
                         .of(context)
                         .textTheme
@@ -85,7 +88,7 @@ class RoomContent extends StatelessWidget {
                   child: CustomText(
                     maxLines: 30,
                     textHeight: 24,
-                    text: roomModel.desc ?? '',
+                    text: _renderRoomDesc(context: context) ?? '',
                     style: Theme
                         .of(context)
                         .textTheme
@@ -93,7 +96,7 @@ class RoomContent extends StatelessWidget {
                         ?.copyWith(
                       color: ConstantsColors.blackColor,
                       fontSize: AppFontSize.x_medium,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ),
@@ -119,5 +122,12 @@ class RoomContent extends StatelessWidget {
       arg: RoomImageModel(
           selectedImage: roomModel.images![imageIndex], roomModel: roomModel),
     );
+  }
+  String? _renderRoomDesc({required BuildContext context}){
+    if(context.read<LocalizationCubit>().state.languageCode=='en'){
+      return roomModel.desc;
+    }else{
+      return roomModel.descAr;
+    }
   }
 }

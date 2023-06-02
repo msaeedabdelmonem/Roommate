@@ -1,8 +1,12 @@
 {
   "@@locale": "en",
   "appName": "Roomates",
-  "loginTitle": "Rooms For Rent & Roommate Finder",
-  "loginDesc": "Browse hundreds of profiles, search and contact potential roommates for free.",
+  "loginTitle1": "Rooms For Rent & Roommate Finder",
+  "loginDesc1": "Browse hundreds of profiles, search and contact potential roommates for free.",
+  "loginTitle2": "Looking For An Ideal Roommate?",
+  "loginDesc2": "Browse hundreds of profiles, search and contact potential roommates for free.",
+  "loginTitle3": "Move to your roome easly now",
+  "loginDesc3": "Browse hundreds of profiles, search and contact potential roommates for free.",
   "facebook_login": "Continue with Facebook",
   "google_login": "Continue with Google",
   "appleLogin": "Continue with Apple ID",
@@ -27,5 +31,10 @@
   "entireRoom": "Entire apartment",
   "single": "Signle room",
   "double": "Double room",
-  "tribble": "Tribble room"
+  "tribble": "Tribble room",
+  "free": "It’s Free",
+  "share": "You are invited to book this room {room}",
+  "inWord": " in ",
+  "perMonth": "per month",
+  "description": "Description"
 }

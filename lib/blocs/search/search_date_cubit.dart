@@ -3,6 +3,7 @@ import 'package:roommate/blocs/home/home_cubit.dart';
 import 'package:roommate/blocs/request_state.dart';
 import 'package:roommate/blocs/search/location_cubit.dart';
 import 'package:roommate/blocs/search/search_cubit.dart';
+import 'package:roommate/blocs/search/search_field_cubit.dart';
 import 'package:roommate/main.dart';
 import 'package:roommate/models/home/room_model.dart';
 import 'package:roommate/models/room/type_model.dart';
@@ -72,22 +73,24 @@ class SearchDataCubit extends Cubit<RequestState>{
   }
 
   Future searchRooms({required String title}) async {
-    final homeCubit = navigatorKey.currentState!.context.read<HomeCubit>();
-    homeCubit.clearSearchResult();
+    final searchFieldCubit = navigatorKey.currentState!.context.read<SearchFieldCubit>();
+    searchFieldCubit.clearSearchResult();
     final List<RoomModel>rooms =[];
-    homeCubit.emit(RequestLoading());
+    searchFieldCubit.emit(RequestLoading());
     await Future.delayed(const Duration(milliseconds: 300));
-    homeCubit.rooms.forEach((element) {
-      if((element.title!).toLowerCase().contains(title.toLowerCase())){
+    navigatorKey.currentState!.context.read<HomeCubit>().rooms.forEach((element) {
+      if((element.title!).toLowerCase().contains(title.toLowerCase())||
+          (element.titleAr!).toLowerCase().contains(title.toLowerCase())
+      ){
         rooms.add(element);
       }
     });
     // final response = await searchRepo.searchRoom(title: title);
     if (rooms.isNotEmpty) {
-      navigatorKey.currentState!.context.read<HomeCubit>().emitRooms(response: rooms,forSearch: true);
+      searchFieldCubit.emitRooms(response: rooms,forSearch: true);
       emit(RequestLoaded(date:rooms));
     } else {
-      navigatorKey.currentState!.context.read<HomeCubit>().emit(RequestError());
+      searchFieldCubit.emit(RequestError());
     }
   }
 }

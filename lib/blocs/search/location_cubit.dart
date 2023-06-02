@@ -29,7 +29,7 @@ class LocationCubit extends Cubit<List<CityWidget>> {
       );
       state[counter] = city;
     }
-
+    citiesWidgets = state;
     emit([...state]);
   }
 

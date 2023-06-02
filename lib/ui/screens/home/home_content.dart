@@ -26,7 +26,7 @@ class HomeContent extends StatelessWidget {
           HeaderWidget(),
           space(10),
           Visibility(
-            visible:/*context.read<HomeCubit>().searchedRooms.isEmpty||*/!searchCubit.checkFilters() ,
+            visible:renderVisibilty(context: context) ,
             child: CustomText(
               text: context.localization.lookingFor,
               style: TextStyle(
@@ -36,7 +36,7 @@ class HomeContent extends StatelessWidget {
             ),
           ),
           Visibility(
-            visible:/*context.read<HomeCubit>().searchedRooms.isNotEmpty||*/searchCubit.checkFilters() ,
+            visible:renderNumberVisibilty(context: context) ,
             child: CustomText(
               text: context.localization.searchResults(context.watch<HomeCubit>().searchedRooms.length.toString()),
               style: TextStyle(
@@ -49,10 +49,33 @@ class HomeContent extends StatelessWidget {
           Filters(),
           // SearchWidget(enabled: false),
           Expanded(
-            child: RoomListWidget(),
+            child: RoomListWidget<HomeCubit>(),
           )
         ],
       ),
     );
+  }
+
+  bool renderVisibilty({required BuildContext context}){
+    if(context.read<SearchCubit>().checkFilters()){
+   return false;
+    }else{
+      if(context.read<HomeCubit>().searchedRooms.isEmpty){
+        return true;
+      }else {
+        return false;
+      }
+    }
+  }
+  bool renderNumberVisibilty({required BuildContext context}){
+    if(context.read<SearchCubit>().checkFilters()){
+   return true;
+    }else{
+      if(context.read<HomeCubit>().searchedRooms.isEmpty){
+        return false;
+      }else {
+        return true;
+      }
+    }
   }
 }

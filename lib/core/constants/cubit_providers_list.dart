@@ -10,6 +10,7 @@ import 'package:roommate/blocs/search/district_cubit.dart';
 import 'package:roommate/blocs/search/location_cubit.dart';
 import 'package:roommate/blocs/search/search_cubit.dart';
 import 'package:roommate/blocs/search/search_date_cubit.dart';
+import 'package:roommate/blocs/search/search_field_cubit.dart';
 import 'package:roommate/blocs/splash/splash_cubit.dart';
 import 'package:roommate/core/data_sources/local/shared_perference.dart';
 import 'package:roommate/repositories/auth_repo.dart';
@@ -50,5 +51,10 @@ class CubitProvidersList {
         authCubit: GetIt.I<AuthCubit>(),
       ),
     ),
+    BlocProvider<SearchFieldCubit>(
+      create: (_) => SearchFieldCubit(
+      ),
+    ),
+
   ];
 }

@@ -57,7 +57,7 @@ class LoginContent extends StatelessWidget {
         ),
         space(200),
         SizedBox(
-          height: 200.h,
+          height: 220.h,
           child: SliderList(),
         ),
         space(30),

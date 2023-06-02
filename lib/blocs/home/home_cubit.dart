@@ -38,9 +38,11 @@ class HomeCubit extends Cubit<RequestState> {
     }
     emit(RequestLoaded(date: response));
   }
-void clearSearchResult(){
+
+  void clearSearchResult() {
     searchedRooms.clear();
-}
+  }
+
   getFilteredItem() async {
     emit(RequestLoading());
     await Future.delayed(const Duration(milliseconds: 300));
@@ -50,52 +52,63 @@ void clearSearchResult(){
     final districtCubit =
         navigatorKey.currentState!.context.read<DistrictCubit>();
     final List<RoomModel> rooms = [];
-     if (searchCubit.priceWidgets.indexWhere((element) => element.isActivated==true)>-1) {
-        int index = searchCubit.priceWidgets
-            .indexWhere((element) => element.isActivated == true);
-        final model = searchCubit.priceWidgets.elementAt(index).sheetItemModel;
-        navigatorKey.currentState!.context
-            .read<HomeCubit>()
-            .rooms
-            .forEach((element) {
-          if (double.parse((element.price.toString())) >= model.min &&
-              double.parse((element.price.toString())) <= model.max) {
-            rooms.add(element);
-          }
-        });
-      } else if (searchCubit.typeWidgets.indexWhere((element) => element.isActivated==true)>-1) {
-        int index = searchCubit.typeWidgets
-            .indexWhere((element) => element.isActivated == true);
-        final model = searchCubit.typeWidgets.elementAt(index).sheetItemModel;
-        navigatorKey.currentState!.context
-            .read<HomeCubit>()
-            .rooms
-            .forEach((element) {
-          if (element.type == model.type) {
-            rooms.add(element);
-          }
-        });
-      } else if(districtCubit.districtWidgets.indexWhere((element) => element.isActivated==true)>-1) {
-        int cityIndex = locationCubit.state
-            .indexWhere((element) => element.isActivated == true);
-        int districtIndex = districtCubit.state
-            .indexWhere((element) => element.isActivated == true);
-        final cityModel = locationCubit.state.elementAt(cityIndex).cityModel;
-        final districtModel =
-            districtCubit.state.elementAt(districtIndex).sheetItemModel;
-        navigatorKey.currentState!.context
-            .read<HomeCubit>()
-            .rooms
-            .forEach((element) {
-          if (element.district?.toLowerCase().trim() ==
-                  cityModel.city?.toLowerCase().trim() ||
-              element.district?.toLowerCase().trim() ==
-                  districtModel.name?.toLowerCase().trim()) {
-            rooms.add(element);
-          }
-        });
-      }
+    if (searchCubit.priceWidgets
+            .indexWhere((element) => element.isActivated == true) >
+        -1) {
+      int index = searchCubit.priceWidgets
+          .indexWhere((element) => element.isActivated == true);
+      final model = searchCubit.priceWidgets.elementAt(index).sheetItemModel;
+      navigatorKey.currentState!.context
+          .read<HomeCubit>()
+          .rooms
+          .forEach((element) {
+        if (double.parse((element.price.toString())) >= model.min &&
+            double.parse((element.price.toString())) <= model.max) {
+          rooms.add(element);
+        }
+      });
+    } else if (searchCubit.typeWidgets
+            .indexWhere((element) => element.isActivated == true) >
+        -1) {
+      int index = searchCubit.typeWidgets
+          .indexWhere((element) => element.isActivated == true);
+      final model = searchCubit.typeWidgets.elementAt(index).sheetItemModel;
+      navigatorKey.currentState!.context
+          .read<HomeCubit>()
+          .rooms
+          .forEach((element) {
+        if (element.type == model.type) {
+          rooms.add(element);
+        }
+      });
+    } else if (districtCubit.districtWidgets
+            .indexWhere((element) => element.isActivated == true) >
+        -1) {
+      int cityIndex = locationCubit.state
+          .indexWhere((element) => element.isActivated == true);
+      int districtIndex = districtCubit.state
+          .indexWhere((element) => element.isActivated == true);
+      final cityModel = locationCubit.state.elementAt(cityIndex).cityModel;
+      final districtModel =
+          districtCubit.state.elementAt(districtIndex).sheetItemModel;
+      navigatorKey.currentState!.context
+          .read<HomeCubit>()
+          .rooms
+          .forEach((element) {
+        bool ckeckDistrict = element.district?.toLowerCase().trim() ==
+                cityModel.city?.toLowerCase().trim() ||
+            element.district?.toLowerCase().trim() ==
+                districtModel.name?.toLowerCase().trim() ||
+            element.districtAr?.toLowerCase().trim() ==
+                cityModel.cityAr?.toLowerCase().trim() ||
+            element.districtAr?.toLowerCase().trim() ==
+                districtModel.nameAr?.toLowerCase().trim();
+        if (ckeckDistrict) {
+          rooms.add(element);
+        }
+      });
+    }
 
-    emitRooms(response: rooms,forSearch: true);
+    emitRooms(response: rooms, forSearch: true);
   }
 }

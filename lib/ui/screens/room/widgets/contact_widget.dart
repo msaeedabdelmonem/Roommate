@@ -1,8 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:roommate/blocs/localization/localization.dart';
+import 'package:roommate/blocs/localization/localization_cubit.dart';
 import 'package:roommate/core/constants/app_font_size.dart';
 import 'package:roommate/core/constants/image_paths.dart';
 import 'package:roommate/core/constants/routes.dart';
@@ -37,7 +40,7 @@ class ContactWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomText(
-                text: 'Contact the owner',
+                text: context.localization.contact,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: ConstantsColors.blackColor,
                       fontSize: AppFontSize.x_medium,
@@ -46,7 +49,7 @@ class ContactWidget extends StatelessWidget {
               ),
               space(3),
               CustomText(
-                text: 'Subtitle here',
+                text: context.localization.free,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: ConstantsColors.greyColor,
                       fontSize: AppFontSize.mid_small,
@@ -55,27 +58,34 @@ class ContactWidget extends StatelessWidget {
               ),
             ],
           ),
-          Row(
-            children: [
-              contacts.phone != null
-                  ? InkWell(
-                      onTap: () => Helper()
-                          .callCustomerService(phone: contacts.phone ?? ''),
-                      child: SvgPicture.asset(ImagePaths.phone))
-                  : SizedBox(),
-              space(0, 12),
-              contacts.messanger != null
-                  ? InkWell(
-                      onTap: () => openMessenger(),
-                      child: SvgPicture.asset(ImagePaths.messenger))
-                  : SizedBox(),
-              space(0, 12),
-              contacts.whatsApp != null
-                  ? InkWell(
-                      onTap: () => openWhatsApp(context),
-                      child: SvgPicture.asset(ImagePaths.whatsapp))
-                  : SizedBox(),
-            ],
+          space(0, 29),
+          Expanded(
+            child: Row(
+              mainAxisAlignment:
+                  context.read<LocalizationCubit>().state.languageCode == 'en'
+                      ? MainAxisAlignment.start
+                      : MainAxisAlignment.end,
+              children: [
+                contacts.phone != null
+                    ? InkWell(
+                        onTap: () => Helper()
+                            .callCustomerService(phone: contacts.phone ?? ''),
+                        child: SvgPicture.asset(ImagePaths.phone))
+                    : SizedBox(),
+                space(0, 12),
+                contacts.messanger != null
+                    ? InkWell(
+                        onTap: () => openMessenger(),
+                        child: SvgPicture.asset(ImagePaths.messenger))
+                    : SizedBox(),
+                space(0, 12),
+                contacts.whatsApp != null
+                    ? InkWell(
+                        onTap: () => openWhatsApp(context),
+                        child: SvgPicture.asset(ImagePaths.whatsapp))
+                    : SizedBox(),
+              ],
+            ),
           )
         ],
       ),
@@ -83,13 +93,15 @@ class ContactWidget extends StatelessWidget {
   }
 
   Future<void> openWhatsApp(BuildContext context) async {
-     Uri? _url ;
+    Uri? _url;
     if (Platform.isAndroid) {
       // add the [https]
-      _url = Uri.parse("https://wa.me/${contacts.whatsApp}/?text=${Uri.parse('')}"); // new line
+      _url = Uri.parse(
+          "https://wa.me/${contacts.whatsApp}/?text=${Uri.parse('')}"); // new line
     } else {
       // add the [https]
-      _url = Uri.parse( "https://api.whatsapp.com/send?phone=${contacts.whatsApp}=${Uri.parse('')}"); // new line
+      _url = Uri.parse(
+          "https://api.whatsapp.com/send?phone=${contacts.whatsApp}=${Uri.parse('')}"); // new line
     }
     if (await canLaunchUrl(_url)) {
       final whats = await launchUrl(_url);
@@ -103,6 +115,7 @@ class ContactWidget extends StatelessWidget {
           message: 'No whats app available right now', isErrorMesage: true));
     }
   }
+
   Future<void> openMessenger() async {
     final Uri _url = Uri.parse("https://${contacts.messanger}");
     if (await canLaunchUrl(_url)) {

@@ -42,7 +42,7 @@ class RoomImageContent extends StatelessWidget {
                 roomModel: roomImageModel.roomModel),
           )),
           RoomDetailsWidget(
-            height: 140.h,
+            height: 180.h,
             padding: EdgeInsets.all(13.h),
             radius: 15,
             spaceHeight: 8,

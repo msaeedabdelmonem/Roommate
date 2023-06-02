@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roommate/blocs/localization/localization_cubit.dart';
 import 'package:roommate/core/constants/app_font_size.dart';
 import 'package:roommate/core/theme/colors/config_colors.dart';
 import 'package:roommate/models/room/type_model.dart';
@@ -35,7 +37,7 @@ class RadioBtn extends StatelessWidget {
         ),
         space(0, 12),
         CustomText(
-          text: sheetItemModel.name ?? '',
+          text: _renderName(context: context) ?? '',
           alignment: AlignmentDirectional.center,
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -46,5 +48,13 @@ class RadioBtn extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  String? _renderName({required BuildContext context}) {
+    if (context.read<LocalizationCubit>().state.languageCode == 'en') {
+      return sheetItemModel.name;
+    } else {
+      return sheetItemModel.nameAr;
+    }
   }
 }

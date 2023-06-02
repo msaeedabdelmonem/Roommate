@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:roommate/blocs/localization/localization.dart';
+import 'package:roommate/blocs/localization/localization_cubit.dart';
 import 'package:roommate/core/constants/image_paths.dart';
 import 'package:roommate/core/theme/colors/config_colors.dart';
 import 'package:roommate/ui/widgets/custom_button.dart';
@@ -15,7 +17,7 @@ class RatingContent extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 16.w),
       child: Column(
         children: [
-          SvgPicture.asset(ImagePaths.rating),
+          SvgPicture.asset(_renderImage(context: context)),
           Expanded(
               child: Align(
             alignment: FractionalOffset.bottomCenter,
@@ -34,5 +36,13 @@ class RatingContent extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _renderImage({required BuildContext context}) {
+    if (context.read<LocalizationCubit>().state.languageCode == 'en') {
+      return ImagePaths.rating;
+    } else {
+      return ImagePaths.ratingAr;
+    }
   }
 }

@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roommate/blocs/localization/localization.dart';
 import 'package:roommate/blocs/login/slider_cubit.dart';
 import 'package:roommate/core/theme/colors/config_colors.dart';
 import 'package:roommate/ui/screens/login/widgets/slider_item.dart';
@@ -11,7 +12,11 @@ class SliderList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sliderList = List.generate(3, (index) => const SliderItem());
+    final sliderList = [
+      SliderItem(title: context.localization.loginTitle1,subTitle: context.localization.loginDesc1,),
+      SliderItem(title: context.localization.loginTitle2,subTitle: context.localization.loginDesc2,),
+      SliderItem(title: context.localization.loginTitle3,subTitle: context.localization.loginDesc3,)
+    ];
 
     final CarouselController controller = CarouselController();
     return Column(children: [

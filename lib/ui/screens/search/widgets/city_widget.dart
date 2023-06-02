@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roommate/blocs/localization/localization_cubit.dart';
 import 'package:roommate/blocs/search/city_cubit.dart';
 import 'package:roommate/blocs/search/district_cubit.dart';
 import 'package:roommate/blocs/search/location_cubit.dart';
@@ -34,7 +35,7 @@ class CityWidget extends StatelessWidget {
           }),
           space(0, 12),
           CustomText(
-            text: cityModel.city ?? '',
+            text: _renderCityName(context: context)?? '',
             alignment: AlignmentDirectional.center,
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -78,4 +79,13 @@ class CityWidget extends StatelessWidget {
       })
     ]);
   }
+
+  String? _renderCityName({required BuildContext context}) {
+    if (context.read<LocalizationCubit>().state.languageCode == 'en') {
+      return cityModel.city;
+    } else {
+      return cityModel.cityAr;
+    }
+  }
+
 }

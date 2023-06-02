@@ -7,14 +7,15 @@ import 'package:roommate/ui/widgets/custom_text.dart';
 import 'package:roommate/ui/widgets/custom_widgets.dart';
 
 class SliderItem extends StatelessWidget {
-  const SliderItem({Key? key}) : super(key: key);
-
+  const SliderItem({Key? key, required this.title, required this.subTitle}) : super(key: key);
+  final String title;
+  final String subTitle;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CustomText(
-          text: context.localization.loginTitle,
+          text: title,
           alignment: AlignmentDirectional.center,
           textAlign: TextAlign.center,
           maxLines: 3,
@@ -25,7 +26,7 @@ class SliderItem extends StatelessWidget {
         ),
         space(5),
         CustomText(
-          text: context.localization.loginDesc,
+          text: subTitle,
           alignment: AlignmentDirectional.center,
           textAlign: TextAlign.center,
           maxLines: 3,

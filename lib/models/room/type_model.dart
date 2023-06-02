@@ -12,6 +12,7 @@ class SheetItemModel {
   String? id;
   int? type;
   String? name;
+  String? nameAr;
   dynamic min;
   dynamic max;
   SheetItemModel({
@@ -19,13 +20,15 @@ class SheetItemModel {
     this.type,
     this.name,
     this.max,
-    this.min
+    this.min,
+    this.nameAr
   });
 
   factory SheetItemModel.fromJson(Map<String, dynamic> json) => SheetItemModel(
     id: json["id"],
     type: json["type"],
     name: json["name"],
+    nameAr: json["name_ar"],
     min: json["min"],
     max: json["max"],
   );
@@ -34,6 +37,7 @@ class SheetItemModel {
     "id": id,
     "type": type,
     "name": name,
+    "name_ar": nameAr,
     "min": min,
     "max": max,
   };

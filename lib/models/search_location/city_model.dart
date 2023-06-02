@@ -13,17 +13,20 @@ String cityModelToJson(CityModel data) => json.encode(data.toJson());
 class CityModel {
   String? id;
   String? city;
+  String? cityAr;
   List<SheetItemModel>? districts;
 
   CityModel({
     this.id,
     this.city,
     this.districts,
+    this.cityAr
   });
 
   factory CityModel.fromJson(Map<String, dynamic> json) => CityModel(
     id: json["id"],
     city: json["city"],
+    cityAr: json["city_ar"],
     districts: json["districts"] == null ? [] : List<SheetItemModel>.from(json["districts"]!.map((x) => SheetItemModel.fromJson(x))),
   );
 

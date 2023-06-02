@@ -16,7 +16,7 @@ class RoomScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(showBackBtn: true, trailingWidgets: [
-        InkWell(
+        GestureDetector(
         child: SvgPicture.asset(ImagePaths.share,height: 22.h,),
           onTap: () {
             Helper().share(roomModel);
