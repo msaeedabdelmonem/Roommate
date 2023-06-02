@@ -53,7 +53,9 @@ class HeaderWidget extends StatelessWidget {
                   onTap: () async {
                     Navigation(navigatorKey: navigatorKey).navigateTo(
                         routeName: RoutesNames.profileScreen,
-                        arg:profileModelFromJson(await diInstance<SharedPreferencesHelper>().getUserData()??''));
+                        arg:(await diInstance<SharedPreferencesHelper>().getUserData())==null?
+                         ProfileModel():
+                        profileModelFromJson(await diInstance<SharedPreferencesHelper>().getUserData()??''));
                   },
                   child: SvgPicture.asset(ImagePaths.profile))
             ],

@@ -39,7 +39,7 @@ class ProfileHeader extends StatelessWidget {
             : SvgPicture.asset(ImagePaths.profileImage),
         space(24),
         CustomText(
-          text: profileModel.name ?? '',
+          text: profileModel.name ?? '--',
           alignment: AlignmentDirectional.center,
           textAlign: TextAlign.center,
           maxLines: 2,
@@ -49,7 +49,7 @@ class ProfileHeader extends StatelessWidget {
         ),
         space(3),
         CustomText(
-          text: profileModel.mail ?? '',
+          text: profileModel.mail ?? '----',
           alignment: AlignmentDirectional.center,
           textAlign: TextAlign.center,
           maxLines: 2,

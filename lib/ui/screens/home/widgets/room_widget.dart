@@ -48,18 +48,23 @@ class RoomImages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      ClipRRect(
-      borderRadius: BorderRadius.circular(16.0.r),
-      child: CachedNetworkImage(
-        imageUrl: image,
-        width: 1.sw,
-        height: 190.h,
-        fit: BoxFit.fitWidth,
-        useOldImageOnUrlChange: true,
-        placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-        errorWidget: (context, url, error) => Icon(Icons.error),
+    return CachedNetworkImage(
+      imageUrl: image,
+      width: 1.sw,
+      height: 190.h,
+      fit: BoxFit.fitWidth,
+      useOldImageOnUrlChange: true,
+      imageBuilder: (context, imageProvider) => Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16.r),
+          image: DecorationImage(
+            image: imageProvider,
+            fit: BoxFit.fitWidth,
+          ),
+        ),
       ),
+      placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+      errorWidget: (context, url, error) => Icon(Icons.error),
     );
   }
 }
