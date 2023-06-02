@@ -104,10 +104,10 @@ class SearchContent extends StatelessWidget {
   }
 
   _navigateBackToHome(BuildContext context) {
-    context.read<HomeCubit>().clearSearchResult();
-    context.read<SearchFieldCubit>().clearSearchResult();
+    // context.read<HomeCubit>().clearSearchResult();
+    // context.read<SearchFieldCubit>().clearSearchResult();
     Navigation(navigatorKey: navigatorKey)
-        .navigateAndReplacement(routeName: RoutesNames.homeScreen);
+        .goBack();
   }
 
   bool renderNumberVisibilty({required BuildContext context}) {

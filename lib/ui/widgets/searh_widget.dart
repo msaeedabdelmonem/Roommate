@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:roommate/blocs/home/home_cubit.dart';
 import 'package:roommate/blocs/localization/localization.dart';
+import 'package:roommate/blocs/search/search_cubit.dart';
 import 'package:roommate/blocs/search/search_date_cubit.dart';
 import 'package:roommate/blocs/search/search_field_cubit.dart';
 import 'package:roommate/core/constants/app_font_size.dart';
@@ -39,8 +40,8 @@ class SearchWidget extends HookWidget {
       node.requestFocus();
     }
 
-
-    final TextEditingController controller = useTextEditingController();
+    String initialValue = context.read<SearchDataCubit>().searchedText??'';
+    final TextEditingController controller = useTextEditingController(text: initialValue);
     return InkWell(
       onTap: () {
         if (!enabled) {

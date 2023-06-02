@@ -18,6 +18,7 @@ class SearchDataCubit extends Cubit<RequestState>{
   List<SheetItemModel> prices = [];
   List<SheetItemModel> types = [];
   List<bool> activeList = [false,false,false];
+  String? searchedText;
   List<CityModel> cities = [
     // CityModel(city: 'cairo', districts: [
     //   SheetItemModel(id: '1', name: 'Nasr city'),
@@ -75,6 +76,7 @@ class SearchDataCubit extends Cubit<RequestState>{
   }
 
   Future searchRooms({required String title}) async {
+    searchedText = title;
     final searchFieldCubit = navigatorKey.currentState!.context.read<SearchFieldCubit>();
     searchFieldCubit.clearSearchResult();
     final List<RoomModel>rooms =[];

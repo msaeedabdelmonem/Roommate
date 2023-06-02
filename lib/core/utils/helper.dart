@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roommate/core/constants/routes.dart';
 import 'package:roommate/core/navigation/navigation.dart';
+import 'package:roommate/core/utils/loading.dart';
 import 'package:roommate/core/utils/tools/dynamic_link.dart';
 import 'package:roommate/main.dart';
 import 'package:roommate/models/home/room_model.dart';
@@ -31,10 +32,12 @@ class Helper {
   }
 
   Future<void> share(RoomModel roomModel) async {
+    Loading.showLoading();
     String dynamicLink =
         await DynamicLink().buildDynamicLink(data: roomModel.toJson());
-    Share.share("You are invited to book this room $dynamicLink",
+    await Share.share("You are invited to book this room $dynamicLink",
         subject: roomModel.title);
+    Loading.dismissLoading();
   }
 
   void showBottomSheet(
