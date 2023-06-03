@@ -20,6 +20,7 @@ class RoomDetailsWidget extends StatelessWidget {
       this.height,
       this.radius = 0,
       this.spaceHeight = 6,
+        this.durationColor,
       this.padding})
       : super(key: key);
   final RoomModel roomModel;
@@ -31,7 +32,7 @@ class RoomDetailsWidget extends StatelessWidget {
   final double radius;
   final EdgeInsetsGeometry? padding;
   final double spaceHeight;
-
+  final Color? durationColor;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -104,7 +105,7 @@ class RoomDetailsWidget extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontSize: AppFontSize.smallMedium,
                         fontWeight: FontWeight.w400,
-                        color: ConstantsColors.greyColor,
+                        color: durationColor??ConstantsColors.greyColor,
                       ),
                 ),
               ],

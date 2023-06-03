@@ -23,8 +23,12 @@ class RoomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigation(navigatorKey: navigatorKey)
-          .navigateTo(routeName: RoutesNames.room, arg: roomModel),
+      onTap: () {
+        if (!showSliderImages) {
+          Navigation(navigatorKey: navigatorKey)
+              .navigateTo(routeName: RoutesNames.room, arg: roomModel);
+        }
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -48,8 +52,7 @@ class RoomImages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      ClipRRect(
+    return ClipRRect(
       borderRadius: BorderRadius.circular(16.0.r),
       child: CachedNetworkImage(
         imageUrl: image,
@@ -57,7 +60,8 @@ class RoomImages extends StatelessWidget {
         height: 190.h,
         fit: BoxFit.fitWidth,
         useOldImageOnUrlChange: true,
-        placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+        placeholder: (context, url) =>
+            Center(child: CircularProgressIndicator()),
         errorWidget: (context, url, error) => Icon(Icons.error),
       ),
     );

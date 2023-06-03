@@ -42,15 +42,16 @@ class RoomImageContent extends StatelessWidget {
                 roomModel: roomImageModel.roomModel),
           )),
           RoomDetailsWidget(
-            height: 180.h,
+            // height: 180.h,
             padding: EdgeInsets.all(13.h),
             radius: 15,
             spaceHeight: 8,
             roomModel: roomImageModel.roomModel,
             backgroundColor: ConstantsColors.blackColor.withOpacity(.5),
-            roomTypeColor: ConstantsColors.greyColor,
+            roomTypeColor: ConstantsColors.whiteColor.withOpacity(0.8),
             roomTitleColor: ConstantsColors.whiteColor,
             roomPriceColor: ConstantsColors.whiteColor,
+            durationColor: ConstantsColors.whiteColor.withOpacity(0.8),
           ),
           space(27),
           CustomButton.icon(
