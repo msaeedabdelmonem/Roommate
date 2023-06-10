@@ -28,7 +28,7 @@ class ProfileHeader extends StatelessWidget {
                     imageUrl: profileModel.image ?? "",
                     width: 1.sw,
                     height: 190.h,
-                    fit: BoxFit.contain,
+                    fit: BoxFit.fill,
                     useOldImageOnUrlChange: true,
                     placeholder: (context, url) =>
                         Center(child: CircularProgressIndicator()),
