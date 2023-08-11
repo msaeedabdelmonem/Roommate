@@ -13,6 +13,7 @@ abstract class AppFontSize {
   static double large = 20.sp;
   static double x_large = 22.sp;
   static double x_x_large = 24.sp;
+  static double x_d_x_large = 28.sp;
   static double x_x_x_large = 34.sp;
   static double x_x_x_x_large = 52.sp;
 }

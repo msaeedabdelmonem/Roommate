@@ -5,6 +5,7 @@ import 'package:roommate/core/constants/image_paths.dart';
 import 'package:roommate/core/utils/helper.dart';
 import 'package:roommate/models/home/room_model.dart';
 import 'package:roommate/ui/screens/room/room_content.dart';
+import 'package:roommate/ui/screens/room/widgets/contact_widget.dart';
 import 'package:roommate/ui/widgets/custom_appbar.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -17,12 +18,20 @@ class RoomScreen extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(showBackBtn: true, trailingWidgets: [
         GestureDetector(
-        child: SvgPicture.asset(ImagePaths.share,height: 22.h,),
+          child: SvgPicture.asset(
+            ImagePaths.share,
+            height: 22.h,
+          ),
           onTap: () {
             Helper().share(roomModel);
           },
         )
       ]),
+      bottomNavigationBar: roomModel.contacts?.phone != null ||
+              roomModel.contacts?.whatsApp != null ||
+              roomModel.contacts?.messanger != null
+          ? ContactWidget(contacts: roomModel.contacts ?? Contacts())
+          : SizedBox(),
       body: SafeArea(
         child: RoomContent(roomModel: roomModel),
       ),

@@ -26,6 +26,7 @@ class ContactWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
       decoration: BoxDecoration(
           color: ConstantsColors.whiteColor,
           border: Border(

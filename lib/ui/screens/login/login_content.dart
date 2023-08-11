@@ -45,13 +45,13 @@ class LoginContent extends StatelessWidget {
                 SvgPicture.asset(ImagePaths.logo),
                 space(0, 21),
                 CustomText(
-                  text: context.localization.appName,
+                  text: context.localization.appName,textMargin: EdgeInsets.only(bottom: 12.h),
                   alignment: AlignmentDirectional.center,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: ConstantsColors.whiteColor,
-                      fontSize: AppFontSize.x_large,
-                      fontWeight: FontWeight.bold),
+                      fontSize: AppFontSize.x_d_x_large,
+                      fontWeight: FontWeight.w900),
                 )
               ]),
         ),

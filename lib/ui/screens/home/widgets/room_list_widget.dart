@@ -47,7 +47,7 @@ class RoomListWidget<T extends Cubit<RequestState>> extends StatelessWidget {
                 return NoDataWidget();
               }
              else {
-               if(T is HomeCubit) {
+               if(T == HomeCubit) {
                  Loading.showLoading();
                }
                 return SizedBox();

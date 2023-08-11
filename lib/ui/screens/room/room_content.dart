@@ -22,99 +22,75 @@ class RoomContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      SizedBox(
-        height: 1.sh,
-        child: Stack(children: [
+    return Container(
+      margin: EdgeInsets.only(bottom: 5.0.h),
+      child: ListView(
+        children: [
           SizedBox(
-            height: 650.h,
-            child: ListView(
-              children: [
-                SizedBox(
-                  height: 200.h,
-                  child: CarouselSlider(
-                    items: List.generate(
-                      roomModel.images!.length,
-                          (index) =>
-                          InkWell(
-                            onTap: () => _onImageClick(imageIndex: index),
-                            child: RoomImages(
-                              image: roomModel.images?[index] ?? '',
-                            ),
-                          ),
-                    ),
-                    options: CarouselOptions(
-                        height: 300.h,
-                        enlargeCenterPage: true,
-                        aspectRatio: 2.0,
-                        autoPlay: true,
-                        enableInfiniteScroll: false),
+            height: 200.h,
+            child: CarouselSlider(
+              items: List.generate(
+                roomModel.images!.length,
+                (index) => InkWell(
+                  onTap: () => _onImageClick(imageIndex: index),
+                  child: RoomImages(
+                    image: roomModel.images?[index] ?? '',
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: RoomWidget(
-                    roomModel: roomModel,
-                    showSliderImages: true,
-                  ),
-                ),
-                space(16),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: Divider(
-                    height: 1,
-                    color: ConstantsColors.lightGreyColor,
-                    thickness: 1,
-                  ),
-                ),
-                space(16),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: CustomText(
-                    text: context.localization.description,
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(
-                      color: ConstantsColors.greyColor,
-                      fontSize: AppFontSize.smallMedium,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-                space(8),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: CustomText(
-                    maxLines: 30,
-                    textHeight: 24,
-                    text: _renderRoomDesc(context: context) ?? '',
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(
-                      color: ConstantsColors.blackColor,
-                      fontSize: AppFontSize.x_medium,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-              ],
+              ),
+              options: CarouselOptions(
+                  height: 300.h,
+                  enlargeCenterPage: true,
+                  aspectRatio: 2.0,
+                  autoPlay: true,
+                  enableInfiniteScroll: false),
             ),
           ),
-          roomModel.contacts?.phone != null ||
-              roomModel.contacts?.whatsApp != null ||
-              roomModel.contacts?.messanger != null ?
-          Positioned(
-            bottom: 8.h,
-            left: 16.w,
-            right: 16.w,
-            child: ContactWidget(contacts: roomModel.contacts ?? Contacts()),
-          ):SizedBox()
-        ]),
-      );
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: RoomWidget(
+              roomModel: roomModel,
+              showSliderImages: true,
+            ),
+          ),
+          space(16),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: Divider(
+              height: 1,
+              color: ConstantsColors.lightGreyColor,
+              thickness: 1,
+            ),
+          ),
+          space(16),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: CustomText(
+              text: context.localization.description,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: ConstantsColors.greyColor,
+                    fontSize: AppFontSize.smallMedium,
+                    fontWeight: FontWeight.w700,
+                  ),
+            ),
+          ),
+          space(8),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: CustomText(
+              maxLines: 30,
+              textHeight: 24,
+              text: _renderRoomDesc(context: context) ?? '',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: ConstantsColors.blackColor,
+                    fontSize: AppFontSize.x_medium,
+                    fontWeight: FontWeight.w400,
+                  ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   void _onImageClick({required int imageIndex}) {
@@ -124,10 +100,11 @@ class RoomContent extends StatelessWidget {
           selectedImage: roomModel.images![imageIndex], roomModel: roomModel),
     );
   }
-  String? _renderRoomDesc({required BuildContext context}){
-    if(context.read<LocalizationCubit>().state.languageCode=='en'){
+
+  String? _renderRoomDesc({required BuildContext context}) {
+    if (context.read<LocalizationCubit>().state.languageCode == 'en') {
       return roomModel.desc;
-    }else{
+    } else {
       return roomModel.descAr;
     }
   }

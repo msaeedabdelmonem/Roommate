@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -53,7 +55,7 @@ class HeaderWidget extends StatelessWidget {
                   onTap: () async {
                     Navigation(navigatorKey: navigatorKey).navigateTo(
                         routeName: RoutesNames.profileScreen,
-                        arg:profileModelFromJson(await diInstance<SharedPreferencesHelper>().getUserData()??''));
+                        arg:ProfileModel.fromJson(jsonDecode(await diInstance<SharedPreferencesHelper>().getUserData()??'')));
                   },
                   child: SvgPicture.asset(ImagePaths.profile))
             ],
